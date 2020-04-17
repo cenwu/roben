@@ -13,7 +13,7 @@ robin(
   burn.in = NULL,
   robust = TRUE,
   sparse = TRUE,
-  structural = TRUE,
+  structure = c("sparsegroup", "group", "individual"),
   hyper = NULL,
   debugging = FALSE
 )
@@ -34,11 +34,11 @@ as the intercept.}
 
 \item{sparse}{logical flag. If TRUE, spike-and-slab priors will be used to shrink coefficients of irrelevant covariates to zero exactly. 'sparse' has effect only when VC=TRUE.}
 
-\item{structural}{logical flag. If TRUE, the coefficient functions with varying effects and constant effects will be penalized separately. 'structural' has effect only when VC=TRUE.}
-
 \item{hyper}{a named list of hyperparameters.}
 
 \item{debugging}{logical flag. If TRUE, progress will be output to the console and extra information will be returned.}
+
+\item{structural}{logical flag. If TRUE, the coefficient functions with varying effects and constant effects will be penalized separately. 'structural' has effect only when VC=TRUE.}
 }
 \description{
 fit a robust Bayesian variable selection model for G×E interactions.

@@ -1,10 +1,16 @@
-Data.matrix <- function(X, Y, E, clin, intercept)
+Data.matrix <- function(X, Y, E, clin=NULL, intercept=TRUE, debugging=FALSE)
 {
   x = as.matrix(X); y = cbind(Y)
   n = nrow(x); s = ncol(x)
   noClin = noE = TRUE
   CLC = NULL
   env = nclc = 0
+  clin.names = E.names = G.names = NULL
+  size = 1
+
+  x = scale(x, center = TRUE, scale=FALSE)
+
+  if(nrow(y) != n)  stop("Length of Y does not match the number of rows of X.");
 
   if(!is.null(clin)){
     clin = as.matrix(clin)
@@ -12,7 +18,7 @@ Data.matrix <- function(X, Y, E, clin, intercept)
     if(is.null(colnames(clin))){colnames(clin)=paste("clin.", 1:ncol(clin), sep="")}
     CLC = clin
     noClin = FALSE
-    Clin.names = colnames(clin)
+    clin.names = colnames(clin)
   }
 
   if(intercept){ # add intercept
@@ -21,17 +27,15 @@ Data.matrix <- function(X, Y, E, clin, intercept)
 
   if(!is.null(E)){
     E = as.matrix(E);env = ncol(E)
+    E = scale(E, center = TRUE, scale=FALSE)
     if(nrow(E) != n)  stop("E has a different number of rows than X.");
-    if(is.null(colnames(E))){colnames(E)=paste("E.", 1:env, sep="")}
+    if(is.null(colnames(E))){colnames(E)=paste("E", 1:env, sep="")}
+    E.names = colnames(E)
     CLC = cbind(CLC, E)
     noE = FALSE
   }else if(!debugging){
     stop("E factors must be provided.")
   }
-
-
-  # CLC.names = colnames(CLC)
-  # nclc = ncol(CLC)
 
   if(is.null(colnames(x))){
     G.names = paste("G", 1:s, sep="")
@@ -52,5 +56,5 @@ Data.matrix <- function(X, Y, E, clin, intercept)
     xx = x
   }
 
-  list(xx=xx, y=y, CLC=CLC, n=n, s=s, env=env, size=size)
+  list(xx=xx, y=y, CLC=CLC, n=n, s=s, env=env, size=size, G.names=G.names, E.names=E.names, clin.names=clin.names)
 }

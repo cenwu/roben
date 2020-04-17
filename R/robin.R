@@ -17,34 +17,16 @@
 #'
 #' @export
 
-robin <- function(X, Y, E, clin=NULL, iterations=10000, burn.in=NULL, robust=TRUE, sparse=TRUE, structural=TRUE, hyper=NULL, debugging=FALSE)
+robin <- function(X, Y, E, clin=NULL, iterations=10000, burn.in=NULL, robust=TRUE, sparse=TRUE, structure=c("sparsegroup","group","individual"), hyper=NULL, debugging=FALSE)
 {
 
-  # this.call = match.call()
-  # intercept = TRUE
-  # dat = Data.matrix(X, Y, E, clin, intercept)
-  #
-  # xx = dat$xx
-  # y = dat$y
-  # CLC = dat$CLC
-  # n = dat$n
-  # s = dat$s
-  # env = dat$env
-  # size = dat$size
-
-  x = as.matrix(X); y = cbind(Y)
-  n = nrow(x); s = ncol(x)
-  noClin = noE = TRUE
-  CLC = NULL
-  env = nclc = 0
-  intercept = TRUE
+  structure = match.arg(structure)
   this.call = match.call()
-
-  if(nrow(y) != n)  stop("Length of Y does not match the number of rows of X.");
+  intercept = TRUE
 
   if(iterations<1) stop("iterations must be a positive integer.")
   if(is.null(burn.in)){
-    BI = floor(iterations)/2
+    BI = floor(iterations/2)
   }else if(burn.in>=1){
     BI = as.integer(burn.in)
   }else{
@@ -53,58 +35,22 @@ robin <- function(X, Y, E, clin=NULL, iterations=10000, burn.in=NULL, robust=TRU
   if(iterations<=BI) stop("iterations must be larger than burn.in.")
 
 
-  if(!is.null(clin)){
-    clin = as.matrix(clin)
-    if(nrow(clin) != n)  stop("clin has a different number of rows than X.");
-    if(is.null(colnames(clin))){colnames(clin)=paste("clin.", 1:ncol(clin), sep="")}
-    CLC = clin
-    noClin = FALSE
-    Clin.names = colnames(clin)
-  }
+  dat = Data.matrix(X, Y, E, clin, intercept, debugging)
 
-  if(intercept){ # add intercept
-    CLC = cbind(matrix(1,n,1,dimnames=list(NULL, "IC")), CLC)
-  }
-
-  if(!is.null(E)){
-    E = as.matrix(E);env = ncol(E)
-    if(nrow(E) != n)  stop("E has a different number of rows than X.");
-    if(is.null(colnames(E))){colnames(E)=paste("E.", 1:env, sep="")}
-    CLC = cbind(CLC, E)
-    noE = FALSE
-  }else if(!debugging){
-    stop("E factors must be provided.")
-  }
-
-  # if(any(c(nrow(E), nrow(clin), length(y)) != n)){
-  #   stop("Input data (X, Y, E or clin) have different numbers of observations.")
-  # }
-
+  xx = dat$xx
+  y = dat$y
+  CLC = dat$CLC
+  n = dat$n; s = dat$s
+  env = dat$env
+  size = dat$size
+  G.names = dat$G.names
+  E.names = dat$E.names
+  clin.names = dat$clin.names
 
   CLC.names = colnames(CLC)
   nclc = ncol(CLC)
 
-  if(is.null(colnames(x))){
-    G.names = paste("G", 1:s, sep="")
-  }else{
-    G.names = colnames(x)
-  }
-
-  # x = cbind(1, x) # add intercept
-  if(!noE){
-    size = env+1
-    xx = as.data.frame(matrix(0, n, s*(env+1)))
-    for(j in 1:s){
-      last = j*(env+1); first = last-env
-      xx[,first:last] = cbind(x[,j], E*x[,j])
-      colnames(xx)[first:last] = c(G.names[j], paste(G.names[j], "E", 1:env, sep=""))
-    }
-    xx = as.matrix(xx)
-  }else{
-    xx = x
-  }
-
-  if(debugging) message("No. of G: ", s, "\tNo. of E: ", env, "\tNo. of G+GxE: ", ncol(xx), "\n")
+ if(debugging) message("No. of G: ", s, "\tNo. of E: ", env, "\tNo. of G+GxE: ", ncol(xx), "\n")
 
   clcxx = cbind(CLC, xx)
   lasso.cv = glmnet::cv.glmnet(clcxx,y,alpha=1,nfolds=5)
@@ -115,78 +61,29 @@ robin <- function(X, Y, E, clin=NULL, iterations=10000, burn.in=NULL, robust=TRU
   hatAlpha = coeff.array[c(1:nclc)]
   hatBeta = matrix(coeff.array[-c(1:nclc)], ncol = s)
 
-  # if(VC){
-  #   hat.m = coeff.array[1:q]      ## coeff for intercept
-  #   hat.r0 = coeff.array[(1:s)+q] ## coeff for constant
-  #   hat.r.star = utils::head(coeff.array, ncol(xx))[-(1:(s+q))] ## coeff for varying part
-  # }
+  if(robust){
+    out = Robust(xx, y, CLC, s, size, iterations, hatAlpha, hatBeta, sparse, structure, hyper, debugging)
+  }else{
+    out = NonRobust(xx, y, CLC, s, size, iterations, hatAlpha, hatBeta, sparse, structure, hyper, debugging)
+  }
 
-  # coeff.clc = utils::tail(coeff.array, -ncol(xx)) ## E CLC Z EX ZX
-  # hat.clc = coeff.clc[1:nclc]              ## E CLC Z
-  # hat.zeta = utils::tail(coeff.clc, -nclc)  ## EX ZX
-  #
-  # if(!VC){
-  #   out = BLasso(xx, y, CLC, EX, ZX, s, iterations, coeff.array[1], coeff.array[2:ncol(xx)], hat.clc, hat.zeta, hyper, debugging)
-  #   CC = apply(out$posterior$GS.r0[-c(1:BI),,drop=FALSE], 2, stats::median)
-  #   LL = apply(out$posterior$GS.rs[-c(1:BI),,drop=FALSE], 2, stats::median)
-  #   names(CC) = names(LL) = Var.names
-  #   coeff = list(intercept=stats::median(out$posterior$GS.m[-c(1:BI)]), Z=stats::median(out$posterior$GS.Z[-c(1:BI)]), Main=CC, Interaction=LL)
-  # }else{
-  #   if(structural){
-  #     out = BVC_SI(xx, y, CLC, EX, s, q, iterations, hat.m, hat.r0, hat.r.star, hat.clc, hat.zeta, sparse, hyper, debugging)
-  #     INT = apply(out$posterior$GS.m[-c(1:BI),,drop=FALSE], 2, stats::median)
-  #     CC = apply(out$posterior$GS.r0[-c(1:BI),,drop=FALSE], 2, stats::median)
-  #     VV = apply(out$posterior$GS.rs[-c(1:BI),,drop=FALSE], 2, stats::median)
-  #     coeff = cbind(INT, rbind(CC, matrix(VV, nrow = q-1)))
-  #   }else{
-  #     hat.r = c(rbind(hat.r0, matrix(hat.r.star, nrow = (q-1))))
-  #     out = BVC_NS(design$Xns, y, CLC, EX, s, q, iterations, hat.m, hat.r, hat.clc, hat.zeta, sparse, hyper, debugging)
-  #     INT = apply(out$posterior$GS.m[-c(1:BI),,drop=FALSE], 2, stats::median)
-  #     VV = apply(out$posterior$GS.rs[-c(1:BI),,drop=FALSE], 2, stats::median)
-  #     coeff = cbind(INT, matrix(VV, nrow = q))
-  #   }
-  #   colnames(coeff) = c("intercept",Var.names)
-  #   rownames(coeff) = paste("basis", 0:(q-1), sep="")
-  # }
-  #
-  #
-  # if(noE && noClin){
-  #   coeff.clin = NULL
-  #   coeff.E = NULL
-  #   coeff.zeta = NULL
-  # }else if(!noE && !noClin){
-  #   coeff.clc = apply(out$posterior$GS.clc[-c(1:BI),,drop=FALSE], 2, stats::median)
-  #   coeff.clin = coeff.clc[-1]
-  #   coeff.E = coeff.clc[1]
-  #   coeff.zeta = apply(out$posterior$GS.zeta[-c(1:BI),,drop=FALSE], 2, stats::median)
-  #   names(coeff.clin) = Clin.names
-  #   names(coeff.zeta) = paste("G", 1:s, sep="")
-  # }else if(noE){
-  #   coeff.clin = apply(out$posterior$GS.clc[-c(1:BI),,drop=FALSE], 2, stats::median)
-  #   coeff.E = NULL
-  #   coeff.zeta = NULL
-  #   names(coeff.clin) = Clin.names
-  # }else{
-  #   coeff.clin = NULL
-  #   coeff.E = apply(out$posterior$GS.clc[-c(1:BI),,drop=FALSE], 2, stats::median)
-  #   coeff.zeta = apply(out$posterior$GS.zeta[-c(1:BI),,drop=FALSE], 2, stats::median)
-  #   names(coeff.zeta) = paste("G", 1:s, sep="")
-  # }
-  #
-  # coefficient = list(E=coeff.E, clin=coeff.clin, EX=coeff.zeta, ZX=coeff)
-  # if(noE){
-  #   coefficient$E = NULL
-  #   coefficient$EX = NULL
-  # }
-  # if(noClin) coefficient$clin = NULL
-  #
-  # fit = list(call = this.call, posterior = out$posterior, coefficient=coefficient, burn.in = BI, iterations=iterations)
+  coeff.main = apply(out$GS.alpha[-(1:BI),,drop=FALSE], 2, median); names(coeff.main) = CLC.names;
+  coeff.GE = matrix(apply(out$GS.beta[-(1:BI),], 2, median), size, dimnames=list(c("main",E.names),G.names))
 
-  fit = list(call = this.call, burn.in = BI, iterations=iterations, design=xx)
+  Int = coeff.main[1]
+  coeff.E = tail(coeff.main, env); #names(coeff.E) = E.names;
+  coeff.clin = head(coeff.main[-1], -env)
+  if(env>0){
+    coeff.clin = head(coeff.main[-1], -env)
+  }else{
+    coeff.clin = coeff.main[-1]
+  }
+
+  coefficient = list(Int=Int, clin=coeff.clin, E=coeff.E, GE=coeff.GE)
+
+  fit = list(call = this.call, posterior = out, coefficient=coefficient, burn.in = BI, iterations=iterations, design=list(xx=xx, CLC=CLC))
 
   # if(debugging && sparse) fit$debugList = out$debugList;
-  # if(VC) fit$basis = basis;
-  #
-  # class(fit)=c("BVCfit", class(out))
+  class(fit)=c("robin", class(out))
   fit
 }
