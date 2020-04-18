@@ -22,9 +22,9 @@ robin(
 \item{X}{the matrix of predictors (genetic factors) without intercept. Each row should be an observation vector. A column of 1 will be added to the X matrix
 as the intercept.}
 
-\item{Y}{the response variable. The current version of BVCfit only supports continuous response.}
+\item{Y}{the response variable. The current version of robin only supports continuous response.}
 
-\item{E}{a matrix of environmental factors for interactions.}
+\item{E}{a matrix of environmental factors. The interaction terms between X (G factors) and E will be automatically created and included in the model.}
 
 \item{clin}{a matrix of clinical variables. Clinical variables are not subject to penalty.}
 
@@ -32,15 +32,47 @@ as the intercept.}
 
 \item{burn.in}{the number of iterations for burn-in.}
 
+\item{robust}{logical flag.}
+
 \item{sparse}{logical flag. If TRUE, spike-and-slab priors will be used to shrink coefficients of irrelevant covariates to zero exactly. 'sparse' has effect only when VC=TRUE.}
+
+\item{structure}{three choices are available. "sparsegroup" for sparse-group selection, which is a bi-level selection on both group-level and individual-level. "group" for selection on group-level only. "individual" for selection on group-level only.}
 
 \item{hyper}{a named list of hyperparameters.}
 
 \item{debugging}{logical flag. If TRUE, progress will be output to the console and extra information will be returned.}
-
-\item{structural}{logical flag. If TRUE, the coefficient functions with varying effects and constant effects will be penalized separately. 'structural' has effect only when VC=TRUE.}
 }
 \description{
 fit a robust Bayesian variable selection model for G×E interactions.
+}
+\examples{
+data(GxE_small)
+
+## default method
+iter = 5000
+fit=robin(X, Y, E, clin, iterations = iter)
+fit$coefficient
+
+## Ture values of parameters of mian G effects and interactions
+coeff$GE
+
+## Compute TP and FP
+
+index = which(coeff$GE != 0)
+pos = which(fit$coefficient$GE != 0)
+tp = length(intersect(index, pos))
+fp = length(pos) - tp
+list(tp=tp, fp=fp)
+
+\donttest{
+## alternative: robust group selection
+fit=robin(X, Y, E, clin, iterations = iter, structure="g")
+fit$coefficient
+
+## alternative: non-robust sparse group selection
+fit=robin(X, Y, E, clin, iterations = iter, robust=FALSE)
+fit$coefficient
+}
+
 }
 \keyword{models}

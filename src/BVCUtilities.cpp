@@ -10,8 +10,6 @@ using namespace arma;
 using namespace R;
 
 
-//' @export
-// [[Rcpp::export()]]
 double rtnorm(double mu, double sigma){
 	double lower = -mu/sigma, ret, a, z;
 
@@ -29,8 +27,7 @@ double rtnorm(double mu, double sigma){
 	return (ret * sigma + mu);
 }
 
-//' @export
-// [[Rcpp::export()]]
+
 double rtnorm0(double mu, double sigma){
 	double ret;
 	while((ret = R::rnorm(mu, sigma)) <= 0);

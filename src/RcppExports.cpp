@@ -368,30 +368,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rtnorm
-double rtnorm(double mu, double sigma);
-RcppExport SEXP _robin_rtnorm(SEXP muSEXP, SEXP sigmaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
-    Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP);
-    rcpp_result_gen = Rcpp::wrap(rtnorm(mu, sigma));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rtnorm0
-double rtnorm0(double mu, double sigma);
-RcppExport SEXP _robin_rtnorm0(SEXP muSEXP, SEXP sigmaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type mu(muSEXP);
-    Rcpp::traits::input_parameter< double >::type sigma(sigmaSEXP);
-    rcpp_result_gen = Rcpp::wrap(rtnorm0(mu, sigma));
-    return rcpp_result_gen;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_robin_BGLPointMass", (DL_FUNC) &_robin_BGLPointMass, 20},
@@ -406,8 +382,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_robin_BRSGL", (DL_FUNC) &_robin_BRSGL, 24},
     {"_robin_BSGL_SS", (DL_FUNC) &_robin_BSGL_SS, 23},
     {"_robin_BSGL", (DL_FUNC) &_robin_BSGL, 21},
-    {"_robin_rtnorm", (DL_FUNC) &_robin_rtnorm, 2},
-    {"_robin_rtnorm0", (DL_FUNC) &_robin_rtnorm0, 2},
     {NULL, NULL, 0}
 };
 

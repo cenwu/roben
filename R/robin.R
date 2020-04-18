@@ -5,15 +5,44 @@
 #' @keywords models
 #' @param X the matrix of predictors (genetic factors) without intercept. Each row should be an observation vector. A column of 1 will be added to the X matrix
 #' as the intercept.
-#' @param Y the response variable. The current version of BVCfit only supports continuous response.
-#' @param E a matrix of environmental factors for interactions.
+#' @param Y the response variable. The current version of robin only supports continuous response.
+#' @param E a matrix of environmental factors. The interaction terms between X (G factors) and E will be automatically created and included in the model.
 #' @param clin a matrix of clinical variables. Clinical variables are not subject to penalty.
 #' @param iterations the number of MCMC iterations.
 #' @param burn.in the number of iterations for burn-in.
-#' @param sparse logical flag. If TRUE, spike-and-slab priors will be used to shrink coefficients of irrelevant covariates to zero exactly. 'sparse' has effect only when VC=TRUE.
-#' @param structural logical flag. If TRUE, the coefficient functions with varying effects and constant effects will be penalized separately. 'structural' has effect only when VC=TRUE.
+#' @param robust logical flag. If TRUE, robust methods will be used.
+#' @param sparse logical flag. If TRUE, spike-and-slab priors will be used to shrink coefficients of irrelevant covariates to zero exactly.
+#' @param structure three choices are available. "sparsegroup" for sparse-group selection, which is a bi-level selection on both group-level and individual-level. "group" for selection on group-level only. "individual" for selection on individual-level only.
 #' @param hyper a named list of hyperparameters.
 #' @param debugging logical flag. If TRUE, progress will be output to the console and extra information will be returned.
+#'
+#' @examples
+#' data(GxE_small)
+#'
+#' ## default method
+#' iter = 5000
+#' fit=robin(X, Y, E, clin, iterations = iter)
+#' fit$coefficient
+#'
+#' ## Ture values of parameters of mian G effects and interactions
+#' coeff$GE
+#'
+#' ## Compute TP and FP
+#' index = which(coeff$GE != 0)
+#' pos = which(fit$coefficient$GE != 0)
+#' tp = length(intersect(index, pos))
+#' fp = length(pos) - tp
+#' list(tp=tp, fp=fp)
+#'
+#' \donttest{
+#' ## alternative: robust group selection
+#' fit=robin(X, Y, E, clin, iterations = iter, structure="g")
+#' fit$coefficient
+#'
+#' ## alternative: non-robust sparse group selection
+#' fit=robin(X, Y, E, clin, iterations = iter, robust=FALSE)
+#' fit$coefficient
+#' }
 #'
 #' @export
 
@@ -67,14 +96,14 @@ robin <- function(X, Y, E, clin=NULL, iterations=10000, burn.in=NULL, robust=TRU
     out = NonRobust(xx, y, CLC, s, size, iterations, hatAlpha, hatBeta, sparse, structure, hyper, debugging)
   }
 
-  coeff.main = apply(out$GS.alpha[-(1:BI),,drop=FALSE], 2, median); names(coeff.main) = CLC.names;
-  coeff.GE = matrix(apply(out$GS.beta[-(1:BI),], 2, median), size, dimnames=list(c("main",E.names),G.names))
+  coeff.main = apply(out$GS.alpha[-(1:BI),,drop=FALSE], 2, stats::median); names(coeff.main) = CLC.names;
+  coeff.GE = matrix(apply(out$GS.beta[-(1:BI),], 2, stats::median), size, dimnames=list(c("main",E.names),G.names))
 
   Int = coeff.main[1]
-  coeff.E = tail(coeff.main, env); #names(coeff.E) = E.names;
-  coeff.clin = head(coeff.main[-1], -env)
+  coeff.E = utils::tail(coeff.main, env); #names(coeff.E) = E.names;
+  coeff.clin = utils::head(coeff.main[-1], -env)
   if(env>0){
-    coeff.clin = head(coeff.main[-1], -env)
+    coeff.clin = utils::head(coeff.main[-1], -env)
   }else{
     coeff.clin = coeff.main[-1]
   }

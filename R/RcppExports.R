@@ -49,13 +49,3 @@ BSGL <- function(xx, y, W, s, L, maxSteps, hatAlpha, hatBeta, hatInvTauSq, hatIn
     .Call(`_robin_BSGL`, xx, y, W, s, L, maxSteps, hatAlpha, hatBeta, hatInvTauSq, hatInvGammaSq, invSigAlpha0, hatLambdaSqT, hatLambdaSqG, hatSigmaSq, s1, s2, r1, r2, a, b, progress)
 }
 
-#' @export
-rtnorm <- function(mu, sigma) {
-    .Call(`_robin_rtnorm`, mu, sigma)
-}
-
-#' @export
-rtnorm0 <- function(mu, sigma) {
-    .Call(`_robin_rtnorm0`, mu, sigma)
-}
-
