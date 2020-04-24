@@ -15,13 +15,13 @@
 
 \item{clin.new}{a vector or matrix of new values for clin at which predictions are to be made.}
 
-\item{Y.new}{a vector of the response of new observations. If provided, the prediction mean squared error (PMSE) will be computed based on Y.new.}
+\item{Y.new}{a vector of the response of new observations. If provided, the prediction error will be computed based on Y.new.}
 
 \item{...}{other predict arguments}
 }
 \value{
 an object of class "robin.pred" is returned, which is a list with components:
-\item{pmse}{predictions mean squared error. pmse is NULL is Y.new=NULL.}
+\item{error}{prediction error. error is NULL is Y.new=NULL.}
 \item{y.pred}{predicted values of the new observations.}
 }
 \description{
@@ -31,6 +31,9 @@ make predictions from a robin object
 X.new (E.new) must have the same number of columns as X (E) used for fitting the model. If clin was provided when fit the model, clin.new
 must not be NULL, and vice versa. The predictions are made based on the posterior estimates of coefficients in the robin object.
 Note that the main effects of environmental exposures E are not subject to selection.
+
+If Y.new is provided, the prediction error will be computed. For robust methods, the prediction mean absolute deviations (PMAD) will be computed.
+For non-robust methods, the prediction mean squared error (PMSE) will be computed.
 }
 \examples{
 data(GxE_small)

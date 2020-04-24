@@ -49,6 +49,6 @@ print.GxESelection=function(x, digits = max(3, getOption("digits") - 3),...){
 #' @export
 print.robin.pred=function(x, digits = max(3, getOption("digits") - 3),...){
   cat("\nPMSE:\n")
-  print(x$pmse, digits)
+  print(x$error, digits)
   cat("\npredicted ", length(x$y.pred), " y (list component y.pred)", sep = "")
 }

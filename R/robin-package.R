@@ -7,18 +7,20 @@ NULL
 #' @name robin-package
 #' @title Robust Bayesian Variable Selection for Gene-Environment Interactions
 #' @aliases robin-package
-#' @description Gene-environment (G\eqn{\times}E) interactions have important implications to elucidate the etiology of complex diseases beyond the main genetic and environmental effects. Outliers and data contamination in disease phenotypes of G\eqn{\times}E studies have been commonly encountered, leading to the development of a broad spectrum of robust penalization methods. Nevertheless, within the Bayesian framework, the issue has not been taken care of in existing studies. We develop a robust Bayesian variable selection method for G\eqn{\times}E interaction studies. The proposed Bayesian method can effectively accommodate heavy--tailed errors and outliers in the response variable while conducting variable selection by accounting for structural sparsity. In particular, the spike--and--slab priors have been imposed on both individual and group levels to identify important main and interaction effects. An efficient Gibbs sampler has been developed to facilitate fast computation.
+#' @description In this package, we provide a set of robust Bayesian variable selection methods tailored for interaction analysis. A Bayesian formulation of the least absolute deviation (LAD) regression has been adopted to accommodate data contamination and long-tailed distributions in the phenotype. The default method (proposed method) conducts variable selection by accounting for structural sparsity. In particular, the spike--and--slab priors are imposed on both individual and group levels to identify important main and interaction effects (bi-level sparse-group selection).
 #'
-#' @details The user friendly, integrated interface robin() allows users to flexibly choose the fitting methods they prefer. There are three arguments in robin() that control the fitting method
+#' In addition to the default method, users can also choose to use different selection structures (group-level-only or individual-level-only), methods without spike--and--slab priors or non-robust methods. In total, \emph{robin} provides 12 different methods (6 robust and 6 non-robust). Please read the "Details" below for how to configurate the method used.
+#'
+#' @details The user friendly, integrated interface \strong{robin()} allows users to flexibly choose the fitting methods they prefer. There are three arguments in robin() that control the fitting method:
 #' \tabular{rl}{
-#' robust: \tab whether to robust methods. \cr\cr
-#' sparse: \tab whether to use the spike-and-slab priors to achieve sparsity. \cr\cr
+#' robust: \tab whether to use robust methods. \cr\cr
+#' sparse: \tab whether to use the spike-and-slab priors to create sparsity. \cr\cr
 #' structure: \tab structural identification. Three choices are available: \cr \tab "sparsegroup", "group" and “individual”.
 #' }
 #'
 #' robin() returns a robin object that contains the posterior estimates of each coefficients.
-#' S3 generic functions BVSelection(), predict() and print() are implemented for robin objects.
-#' BVSelection() takes a robin object and returns the variable selection results.
+#' S3 generic functions GxESelection(), predict() and print() are implemented for robin objects.
+#' GxESelection() takes a robin object and returns the variable selection results.
 #' predict() takes a robin object and returns the predicted values for new observations.
 #'
 #' @references

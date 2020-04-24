@@ -18,14 +18,14 @@ status](https://travis-ci.org/jrhub/robin.svg?branch=master)](https://travis-ci.
 coverage](https://codecov.io/gh/jrhub/robin/branch/master/graph/badge.svg)](https://codecov.io/gh/jrhub/robin?branch=master)
 <!-- badges: end -->
 
-Gene-environment (GE) interactions have important implications to
+Gene-environment (G×E) interactions have important implications to
 elucidate the etiology of complex diseases beyond the main genetic and
 environmental effects. Outliers and data contamination in disease
-phenotypes of GE studies have been commonly encountered, leading to the
+phenotypes of G×E studies have been commonly encountered, leading to the
 development of a broad spectrum of robust penalization methods.
 Nevertheless, within the Bayesian framework, the issue has not been
 taken care of in existing studies. We develop a robust Bayesian variable
-selection method for GE interaction studies. The proposed Bayesian
+selection method for G×E interaction studies. The proposed Bayesian
 method can effectively accommodate heavy–tailed errors and outliers in
 the response variable while conducting variable selection by accounting
 for structural sparsity. In particular, the spike–and–slab priors have
@@ -59,7 +59,7 @@ implemented in C++.
     coeff$GE
     
     ## Compute TP and FP
-    sel = GESelection(fit)
+    sel = GxESelection(fit)
     pos = which(sel$indicator != 0)
     tp = length(intersect(which(coeff$GE != 0), pos))
     fp = length(pos) - tp
@@ -69,7 +69,7 @@ implemented in C++.
 
     fit=robin(X, Y, E, clin, iterations = iter, robust=FALSE)
     
-    sel = GESelection(fit)
+    sel = GxESelection(fit)
     pos = which(sel$indicator != 0)
     tp = length(intersect(which(coeff$GE != 0), pos))
     fp = length(pos) - tp

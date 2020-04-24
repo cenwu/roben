@@ -45,6 +45,26 @@ as the intercept.}
 \description{
 fit a robust Bayesian variable selection model for G×E interactions.
 }
+\details{
+Consider the data model described in "\code{\link{data}}":
+\deqn{Y_{i} = \alpha_{0} + \sum_{t=1}^{q}\alpha_{t}Clin_{it} + \sum_{m=1}^{k}\theta_{m}E_{im}  + \sum_{j=1}^{p} \big(U_{ij}^\top\beta_{j}\big) +\epsilon_{i},}
+where the main and interaction effects of the jth genetic variant is corresponding to the coefficient vector \eqn{\beta_{j}=(\beta_{j1}, \beta_{j2},\ldots,\beta_{jL})^\top}.
+
+When \emph{structure="sparsegroup"} (default setting), selection will be conducted on both individual and group levels (bi-level selection):
+\itemize{
+\item \strong{Group-level selection:} by determining whether \eqn{||\beta_{j}||_{2}=0}, we can know if the jth genetic variant has any effect at all.
+\item \strong{Individual-level selection:} investigate whether the jth genetic variant has main effect, G\eqn{\times}E interaction or both, by determining which components in \eqn{\beta_{j}} has non-zero values.
+}
+If \emph{structure="group"}, only group-level selection will be conducted on \eqn{||\beta_{j}||_{2}}. If \emph{structure="individual"}, only individual-level selection will be conducted on each \eqn{\beta_{jl}}, (\eqn{l=1,\ldots,L}).
+\cr
+
+When \emph{sparse=TRUE} (default), spike--and--slab priors are imposed on individual and/or group levels to identify important main and interaction effects. Otherwise, Laplacian shrinkage will be used.
+
+When \emph{robust=TRUE} (default), the distribution of \eqn{\epsilon_{i}} is defined as a Laplace distribution with density
+\eqn{
+f(\epsilon_{i}|\nu) = \frac{\nu}{2}\exp\left\{-\nu |\epsilon_{i}|\right\}
+}, (\eqn{i=1,\dots,n}), which leads to a Bayesian formulation of LAD regression. If \emph{robust=FALSE}, \eqn{\epsilon_{i}} follows a normal distribution.
+}
 \examples{
 data(GxE_small)
 
