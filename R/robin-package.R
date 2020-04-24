@@ -16,6 +16,11 @@ NULL
 #' structure: \tab structural identification. Three choices are available: \cr \tab "sparsegroup", "group" and “individual”.
 #' }
 #'
+#' robin() returns a robin object that contains the posterior estimates of each coefficients.
+#' S3 generic functions BVSelection(), predict() and print() are implemented for robin objects.
+#' BVSelection() takes a robin object and returns the variable selection results.
+#' predict() takes a robin object and returns the predicted values for new observations.
+#'
 #' @references
 #' Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2020). Robust Bayesian variable selection for gene-environment interactions.
 #'

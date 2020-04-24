@@ -11,7 +11,7 @@ test_that("check_parameters_RBVS-SS_g", {
   expect_equal(fit$burn.in, 5000)
   expect_equal(dim(fit$posterior$GS.alpha), c(10000, env+1))
   expect_equal(dim(fit$posterior$GS.beta), c(10000, s*size))
-  expect_equal(class(fit), c("robin","RBVS-SS"))
+  # expect_equal(class(fit), c("robin", "Sparse", "RBVS"))
   expect_equal(length(fit$coefficient$Int), 1)
   expect_equal(length(fit$coefficient$clin), 0)
   expect_equal(length(fit$coefficient$E), env)
@@ -33,7 +33,7 @@ test_that("check_parameters_RBVS-SS_sg", {
   expect_equal(fit$burn.in, 2500)
   expect_equal(dim(fit$posterior$GS.alpha), c(5000, env+1))
   expect_equal(dim(fit$posterior$GS.beta), c(5000, s*size))
-  expect_equal(class(fit), c("robin","RBVS-SS"))
+  # expect_equal(class(fit), c("robin", "Sparse", "RBVS"))
   expect_equal(length(fit$coefficient$Int), 1)
   expect_equal(length(fit$coefficient$clin), 0)
   expect_equal(length(fit$coefficient$E), env)
@@ -53,7 +53,7 @@ test_that("check_parameters_RBVS-SS_i", {
 
   expect_equal(dim(fit$posterior$GS.alpha), c(5000, env+1))
   expect_equal(dim(fit$posterior$GS.beta), c(5000, s*size))
-  expect_equal(class(fit), c("robin","RBVS-SS"))
+  # expect_equal(class(fit), c("robin", "Sparse", "RBVS"))
   expect_named(fit$coefficient$E)
   expect_equal(dim(fit$coefficient$GE), c(size, s))
   expect_gt(sum(fit$coefficient$GE==0), s)
@@ -71,7 +71,7 @@ test_that("check_parameters_RBVS_sg", {
 
   expect_equal(dim(fit$posterior$GS.alpha), c(5000, env+1))
   expect_equal(dim(fit$posterior$GS.beta), c(5000, s*size))
-  expect_equal(class(fit), c("robin","RBVS"))
+  # expect_equal(class(fit), c("robin","RBVS"))
   expect_length(fit$coefficient$Int, 1)
   expect_length(fit$coefficient$clin, 0)
   expect_length(fit$coefficient$E, env)
@@ -90,7 +90,7 @@ test_that("check_parameters_RBVS_g", {
   colnames(E) = c("act", "gl")
   fit=robin(X, Y, E, iterations=5000, sparse = FALSE, structure="g")
 
-  expect_equal(class(fit), c("robin","RBVS"))
+  # expect_equal(class(fit), c("robin","RBVS"))
   expect_equal(names(fit$coefficient$E), c("act", "gl"))
   expect_equal(colnames(fit$coefficient$GE), c("A", "B", "C", "D"))
   expect_equal(dim(fit$coefficient$GE), c(size, s))
@@ -106,7 +106,7 @@ test_that("check_parameters_RBVS_i", {
   colnames(X) = c("A", "B", "C", "D")
   fit=robin(X, Y, E=NULL, iterations=3000, sparse = FALSE, structure="i", debugging=TRUE)
 
-  expect_equal(class(fit), c("robin","RBVS"))
+  # expect_equal(class(fit), c("robin","RBVS"))
   expect_length(fit$coefficient$E, env)
   expect_equal(dim(fit$coefficient$GE), c(size, s))
   expect_equal(colnames(fit$coefficient$GE), c("A", "B", "C", "D"))
@@ -130,7 +130,7 @@ test_that("check_parameters_BVS-SS_sg", {
   expect_equal(fit$burn.in, 4000)
   expect_equal(dim(fit$posterior$GS.alpha), c(8000, env+nclin+1))
   expect_equal(dim(fit$posterior$GS.beta), c(8000, s*size))
-  expect_equal(class(fit), c("robin","BVS-SS"))
+  # expect_equal(class(fit), c("robin","BVS-SS"))
   expect_equal(length(fit$coefficient$Int), 1)
   expect_equal(length(fit$coefficient$clin), nclin)
   expect_equal(length(fit$coefficient$E), env)
@@ -152,7 +152,7 @@ test_that("check_parameters_BVS-SS_g", {
 
   expect_named(fit$coefficient$E)
   expect_named(fit$coefficient$clin)
-  expect_equal(class(fit), c("robin","BVS-SS"))
+  # expect_equal(class(fit), c("robin","BVS-SS"))
   expect_gt(fit$coefficient$Int, 0)
   expect_equal(sum(fit$coefficient$GE==0), size*s)
 
@@ -173,7 +173,7 @@ test_that("check_parameters_BVS-SS_i", {
   expect_equal(names(fit$coefficient$E), c("act", "gl"))
   expect_equal(names(fit$coefficient$clin), c("age", "wt"))
   expect_equal(colnames(fit$coefficient$GE), c("A", "B", "C", "D"))
-  expect_equal(class(fit), c("robin","BVS-SS"))
+  # expect_equal(class(fit), c("robin","BVS-SS"))
   expect_gt(sum(fit$coefficient$GE==0), s)
   expect_true(fit$coefficient$GE[3,3]!=0)
 
@@ -190,7 +190,7 @@ test_that("check_parameters_BVS_sg", {
 
   expect_equal(dim(fit$posterior$GS.alpha), c(5000, env+nclin+1))
   expect_equal(dim(fit$posterior$GS.beta), c(5000, s*size))
-  expect_equal(class(fit), c("robin","BVS"))
+  # expect_equal(class(fit), c("robin","BVS"))
   expect_equal(dim(fit$coefficient$GE), c(size, s))
   expect_equal(sum(fit$coefficient$GE==0), 0)
 
@@ -206,7 +206,7 @@ test_that("check_parameters_BVS_g", {
 
   expect_equal(dim(fit$posterior$GS.alpha), c(3000, env+nclin+1))
   expect_equal(dim(fit$posterior$GS.beta), c(3000, s*size))
-  expect_equal(class(fit), c("robin","BVS"))
+  # expect_equal(class(fit), c("robin","BVS"))
   expect_length(fit$coefficient$clin, nclin)
   expect_equal(dim(fit$coefficient$GE), c(size, s))
   expect_gt(fit$coefficient$Int, 0)

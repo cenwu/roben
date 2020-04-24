@@ -2,7 +2,7 @@ Package: robin
 Type: Package
 Title: Robust Bayesian Variable Selection for Gene-Environment Interactions
 Version: 0.1.0
-Author: Who wrote it
+Author: Jie Ren, Cen Wu
 Maintainer: Jie Ren <jieren@ksu.edu>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
@@ -10,9 +10,11 @@ Depends: R (>= 3.5.0)
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-LinkingTo: Rcpp, RcppArmadillo, testthat
+LinkingTo: Rcpp, RcppArmadillo
 Imports: Rcpp, glmnet
 RoxygenNote: 7.0.2
 Suggests: 
     testthat (>= 2.1.0),
     covr
+URL: https://github.com/jrhub/robin
+BugReports: https://github.com/jrhub/robin/issues

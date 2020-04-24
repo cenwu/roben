@@ -16,6 +16,8 @@
 #' @param hyper a named list of hyperparameters.
 #' @param debugging logical flag. If TRUE, progress will be output to the console and extra information will be returned.
 #'
+#' @seealso \code{\link{GxESelection}}
+#'
 #' @examples
 #' data(GxE_small)
 #'
@@ -28,9 +30,9 @@
 #' coeff$GE
 #'
 #' ## Compute TP and FP
-#' index = which(coeff$GE != 0)
-#' pos = which(fit$coefficient$GE != 0)
-#' tp = length(intersect(index, pos))
+#' sel = GxESelection(fit)
+#' pos = which(sel$indicator != 0)
+#' tp = length(intersect(which(coeff$GE != 0), pos))
 #' fp = length(pos) - tp
 #' list(tp=tp, fp=fp)
 #'

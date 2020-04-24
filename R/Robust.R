@@ -51,9 +51,9 @@ Robust <- function(xx, y, CLC, s, L, max.steps, hatAlpha, hatBeta, sparse, struc
               GS.beta = fit$GS.beta)
 
   if(sparse){
-    class(out)="RBVS-SS"
+    class(out)=c("Sparse", "RBVS")
   }else{
-    class(out)="RBVS"
+    class(out)=c("NonSparse", "RBVS")
   }
 
   out

@@ -1,4 +1,4 @@
-Data.matrix <- function(X, Y, E, clin=NULL, intercept=TRUE, debugging=FALSE)
+Data.matrix <- function(X, Y=NULL, E, clin=NULL, intercept=TRUE, debugging=FALSE)
 {
   x = as.matrix(X); y = cbind(Y)
   n = nrow(x); s = ncol(x)
@@ -10,7 +10,10 @@ Data.matrix <- function(X, Y, E, clin=NULL, intercept=TRUE, debugging=FALSE)
 
   x = scale(x, center = TRUE, scale=FALSE)
 
-  if(nrow(y) != n)  stop("Length of Y does not match the number of rows of X.");
+  if(!is.null(y)){
+    if(nrow(y) != n)  stop("Length of Y does not match the number of rows of X.");
+  }
+
 
   if(!is.null(clin)){
     clin = as.matrix(clin)

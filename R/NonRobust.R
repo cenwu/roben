@@ -53,9 +53,9 @@ NonRobust <- function(xx, y, CLC, s, L, max.steps, hatAlpha, hatBeta, sparse, st
               GS.beta = fit$GS.beta)
 
   if(sparse){
-    class(out)="BVS-SS"
+    class(out)=c("Sparse", "BVS")
   }else{
-    class(out)="BVS"
+    class(out)=c("NonSparse", "BVS")
   }
 
   out

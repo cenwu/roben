@@ -32,11 +32,11 @@ as the intercept.}
 
 \item{burn.in}{the number of iterations for burn-in.}
 
-\item{robust}{logical flag.}
+\item{robust}{logical flag. If TRUE, robust methods will be used.}
 
-\item{sparse}{logical flag. If TRUE, spike-and-slab priors will be used to shrink coefficients of irrelevant covariates to zero exactly. 'sparse' has effect only when VC=TRUE.}
+\item{sparse}{logical flag. If TRUE, spike-and-slab priors will be used to shrink coefficients of irrelevant covariates to zero exactly.}
 
-\item{structure}{three choices are available. "sparsegroup" for sparse-group selection, which is a bi-level selection on both group-level and individual-level. "group" for selection on group-level only. "individual" for selection on group-level only.}
+\item{structure}{three choices are available. "sparsegroup" for sparse-group selection, which is a bi-level selection on both group-level and individual-level. "group" for selection on group-level only. "individual" for selection on individual-level only.}
 
 \item{hyper}{a named list of hyperparameters.}
 
@@ -57,10 +57,9 @@ fit$coefficient
 coeff$GE
 
 ## Compute TP and FP
-
-index = which(coeff$GE != 0)
-pos = which(fit$coefficient$GE != 0)
-tp = length(intersect(index, pos))
+sel = GxESelection(fit)
+pos = which(sel$indicator != 0)
+tp = length(intersect(which(coeff$GE != 0), pos))
 fp = length(pos) - tp
 list(tp=tp, fp=fp)
 
@@ -74,5 +73,8 @@ fit=robin(X, Y, E, clin, iterations = iter, robust=FALSE)
 fit$coefficient
 }
 
+}
+\seealso{
+\code{\link{GxESelection}}
 }
 \keyword{models}
