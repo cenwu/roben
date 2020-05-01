@@ -1,6 +1,6 @@
-#' simulated data for demonstrating the features of robin
+#' simulated data for demonstrating the features of Robin
 #'
-#' Simulated gene expression data for demonstrating the features of robin.
+#' Simulated gene expression data for demonstrating the features of Robin.
 #'
 #' @docType data
 #' @keywords datasets
@@ -20,7 +20,7 @@
 #' independent and identically distributed random vectors. \eqn{Y_{i}} is a continuous response variable representing the
 #' disease phenotype. \eqn{X_{i}} is the \eqn{p}--dimensional vector of G factors. The environmental factors and clinical covariates
 #' are denoted as the \eqn{k}-dimensional vector \eqn{E_{i}} and the \eqn{q}-dimensional vector \eqn{Clin_{i}}, respectively.
-#' \eqn{\epsilon} follows some heavy-tailed distribution.
+#' The \eqn{\epsilon} follows some heavy-tailed distribution.
 #' Considering the following model:
 #'
 #' \deqn{Y_{i} = \alpha_{0} + \sum_{t=1}^{q}\alpha_{t}Clin_{it} + \sum_{m=1}^{k}\theta_{m}E_{im}  + \sum_{j=1}^{p}\gamma_{j}X_{ij} + \sum_{j=1}^{p}\sum_{m=1}^{k}\zeta_{jm}E_{im}X_{ij} +\epsilon_{i},}

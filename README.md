@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# robin
+# Robin
 
 > **Ro**bust **B**ayesian Variable Selection for Gene-environment
 > **In**teractions

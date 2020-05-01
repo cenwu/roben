@@ -15,16 +15,18 @@
 \alias{E2}
 \alias{clin2}
 \alias{coeff2}
-\title{simulated data for demonstrating the features of robin}
-\format{GxE_small consists of five components: X, Y, E, clin and coeff. coeff contains the true values of parameters used for generating Y.
+\title{simulated data for demonstrating the features of Robin}
+\format{
+GxE_small consists of five components: X, Y, E, clin and coeff. coeff contains the true values of parameters used for generating Y.
 
-GxE_large contains larger datasets: X2, Y2, E2 and clin2}
+GxE_large contains larger datasets: X2, Y2, E2 and clin2
+}
 \usage{
 data("GxE_small")
 data("GxE_large")
 }
 \description{
-Simulated gene expression data for demonstrating the features of robin.
+Simulated gene expression data for demonstrating the features of Robin.
 }
 \details{
 \strong{The data model for generating Y}
@@ -33,7 +35,7 @@ Use subscript \eqn{i} to denote the \eqn{i}th subject. Let \eqn{(X_{i}, Y_{i}, E
 independent and identically distributed random vectors. \eqn{Y_{i}} is a continuous response variable representing the
 disease phenotype. \eqn{X_{i}} is the \eqn{p}--dimensional vector of G factors. The environmental factors and clinical covariates
 are denoted as the \eqn{k}-dimensional vector \eqn{E_{i}} and the \eqn{q}-dimensional vector \eqn{Clin_{i}}, respectively.
-\eqn{\epsilon} follows some heavy-tailed distribution.
+The \eqn{\epsilon} follows some heavy-tailed distribution.
 Considering the following model:
 
 \deqn{Y_{i} = \alpha_{0} + \sum_{t=1}^{q}\alpha_{t}Clin_{it} + \sum_{m=1}^{k}\theta_{m}E_{im}  + \sum_{j=1}^{p}\gamma_{j}X_{ij} + \sum_{j=1}^{p}\sum_{m=1}^{k}\zeta_{jm}E_{im}X_{ij} +\epsilon_{i},}

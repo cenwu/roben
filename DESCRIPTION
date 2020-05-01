@@ -1,4 +1,4 @@
-Package: robin
+Package: Robin
 Type: Package
 Title: Robust Bayesian Variable Selection for Gene-Environment Interactions
 Version: 0.1.0
@@ -22,9 +22,9 @@ Encoding: UTF-8
 LazyData: true
 LinkingTo: Rcpp, RcppArmadillo
 Imports: Rcpp, glmnet
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Suggests: 
     testthat (>= 2.1.0),
     covr
-URL: https://github.com/jrhub/robin
-BugReports: https://github.com/jrhub/robin/issues
+URL: https://github.com/jrhub/Robin
+BugReports: https://github.com/jrhub/Robin/issues

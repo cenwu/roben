@@ -1,15 +1,15 @@
-#' @useDynLib robin, .registration = TRUE
+#' @useDynLib Robin, .registration = TRUE
 #' @importFrom Rcpp sourceCpp
 NULL
 
 #' @docType package
 #' @keywords overview
-#' @name robin-package
+#' @name Robin-package
 #' @title Robust Bayesian Variable Selection for Gene-Environment Interactions
-#' @aliases robin-package
-#' @description In this package, we provide a set of robust Bayesian variable selection methods tailored for interaction analysis. A Bayesian formulation of the least absolute deviation (LAD) regression has been adopted to accommodate data contamination and long-tailed distributions in the phenotype. The default method (proposed method) conducts variable selection by accounting for structural sparsity. In particular, the spike--and--slab priors are imposed on both individual and group levels to identify important main and interaction effects (bi-level sparse-group selection).
+#' @aliases Robin-package
+#' @description In this package, we provide a set of robust Bayesian variable selection methods tailored for interaction analysis. A Bayesian formulation of the least absolute deviation (LAD) regression has been adopted to accommodate data contamination and long-tailed distributions in the response/ phenotype. The default method (the proposed method) conducts variable selection by accounting for structural sparsity. In particular, the spike--and--slab priors are imposed on both individual and group levels to identify important main and interaction effects (bi-level/ sparse-group selection).
 #'
-#' In addition to the default method, users can also choose to use different selection structures (group-level-only or individual-level-only), methods without spike--and--slab priors or non-robust methods. In total, \emph{robin} provides 12 different methods (6 robust and 6 non-robust). Please read the "Details" below for how to configurate the method used.
+#' In addition to the default method, users can also choose different selection structures (group-level-only or individual-level-only), methods without spike--and--slab priors and non-robust methods. In total, \emph{robin} provides 12 different methods (6 robust and 6 non-robust). Among them, robust methods with spike--and--slab priors have been developed for the first time. Please read the Details below for how to configurate the method used.
 #'
 #' @details The user friendly, integrated interface \strong{robin()} allows users to flexibly choose the fitting methods they prefer. There are three arguments in robin() that control the fitting method:
 #' \tabular{rl}{
@@ -18,13 +18,28 @@ NULL
 #' structure: \tab structural identification. Three choices are available: \cr \tab "sparsegroup", "group" and “individual”.
 #' }
 #'
-#' robin() returns a robin object that contains the posterior estimates of each coefficients.
+#' The function robin() returns a robin object that contains the posterior estimates of each coefficients.
 #' S3 generic functions GxESelection(), predict() and print() are implemented for robin objects.
 #' GxESelection() takes a robin object and returns the variable selection results.
 #' predict() takes a robin object and returns the predicted values for new observations.
 #'
 #' @references
 #' Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2020). Robust Bayesian variable selection for gene-environment interactions.
+#'
+#' Wu, C., and Ma, S. (2015). A selective review of robust variable selection with applications in bioinformatics.
+#' {\emph{Briefings in Bioinformatics}, 16(5), 873–883} \url{https://doi.org/10.1093/bib/bbu046}
+#'
+#' Zhou, F., Ren, J., Lu, X., Ma, S. and Wu, C. (2020). Gene–Environment Interaction: a Variable Selection Perspective. Epistasis. Methods in Molecular Biology.
+#' {\emph{Humana Press} (Accepted)} \url{https://arxiv.org/abs/2003.02930}
+#'
+#' Ren, J., Zhou, F., Li, X., Chen, Q., Zhang, H., Ma, S., Jiang, Y., Wu, C. (2019) Semi-parametric Bayesian variable selection for gene-environment interactions.
+#' {\emph{Statistics in Medicine}, 39: 617– 638} \url{https://doi.org/10.1002/sim.8434}
+#'
+#' Wu, C., Jiang, Y., Ren, J., Cui, Y., Ma, S. (2018). Dissecting gene-environment interactions: A penalized robust approach accounting for hierarchical structures.
+#' {\emph{Statistics in Medicine}, 37:437–456} \url{https://doi.org/10.1002/sim.7518}
+#'
+#' Wu, C., Shi, X., Cui, Y. and Ma, S. (2015). A penalized robust semiparametric approach for gene-environment interactions.
+#' {\emph{Statistics in Medicine}, 34 (30): 4016–4030} \url{https://doi.org/10.1002/sim.6609}
 #'
 #' @seealso \code{\link{robin}}
 NULL

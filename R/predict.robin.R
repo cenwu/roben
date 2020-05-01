@@ -26,8 +26,8 @@
 #'
 #' @examples
 #' data(GxE_small)
-#' test = sample((1:nrow(X)), floor(nrow(X)/5))
-#' fit=robin(X[-test,], Y[-test,], E[-test,], clin[-test,], iterations = 5000)
+#' test=sample((1:nrow(X)), floor(nrow(X)/5))
+#' fit=robin(X[-test,], Y[-test,], E[-test,], clin[-test,], iterations=5000)
 #' predict(fit, X[test,], E[test,], clin[test,], Y[test,])
 #'
 #' @export

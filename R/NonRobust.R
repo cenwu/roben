@@ -3,20 +3,24 @@ NonRobust <- function(xx, y, CLC, s, L, max.steps, hatAlpha, hatBeta, sparse, st
   nclc = ncol(CLC)
   n = nrow(xx)
 
-  a = b = r = 1
   hatSigmaSq = 1
   hatInvTauSq = rep(1, s)
   lambdaSq = 1
   hatPi = 0.5
-  sh1 = sh0 = 1
   invSigAlpha0 = diag(10^-3, nclc)
   alpha = gamma = 1
 
-  sh0_0 = sh0_1 = sh0
-  sh1_0 = sh1_1 = sh1
-  hatPi0 = hatPi1 = hatPi
-  r1 = r2 = r
+  sh0_1 = ifelse(is.null(hyper$a0), 1, hyper$a0)
+  sh0_0 = ifelse(is.null(hyper$b0), 1, hyper$b0)
+  sh1_1 = ifelse(is.null(hyper$a1), 1, hyper$a1)
+  sh1_0 = ifelse(is.null(hyper$b1), 1, hyper$b1)
 
+  sh = ifelse(is.null(hyper$d1), 1, hyper$d1)
+  r = ifelse(is.null(hyper$d2), 1, hyper$d2)
+
+  hatPi0 = hatPi1 = hatPi
+  s1 = s2 = sh
+  r1 = r2 = r
 
   hatGamma = matrix(1, nrow = L, ncol = s)
   hatInvGammaSq = 1/hatGamma
@@ -29,21 +33,21 @@ NonRobust <- function(xx, y, CLC, s, L, max.steps, hatAlpha, hatBeta, sparse, st
                                         hatSsq=1, hatPi0=hatPi, hatPi1=hatPi, hatT=1, sh0_1, sh0_0, sh1_1, sh1_0, c=1, d=1, 0.05, progress),
 
                 "group" = BGLPointMass(xx, y, CLC, s, L, max.steps, hatAlpha, c(hatBeta), hatInvTauSq, invSigAlpha0, hatPiStar=hatPi,
-                                       lambdaSq, hatSigmaSq, a, b, alpha, gamma, sh1, sh0, progress),
+                                       lambdaSq, hatSigmaSq, sh, r, alpha, gamma, sh0_1, sh0_0, progress),
 
                 "individual" = BL_SS(xx, y, CLC, max.steps, hatAlpha, c(hatBeta), hatInvTauSq=rep(1,s*L), invSigAlpha0, hatPi,
-                                     lambdaSq, hatSigmaSq, a, b, alpha, gamma, sh1, sh0, progress)
+                                     lambdaSq, hatSigmaSq, sh, r, alpha, gamma, sh1_1, sh1_0, progress)
     )
   }else{
     fit=switch (structure,
                 "sparsegroup" = BSGL(xx, y, CLC, s, L, max.steps, hatAlpha, hatBeta, hatInvTauSq, hatInvGammaSq, invSigAlpha0,
-                                     lambdaSq, lambdaSq, hatSigmaSq, s1=1, s2=1, r1, r2, a, b, progress),
+                                     lambdaSq, lambdaSq, hatSigmaSq, s1, s2, r1, r2, a=1, b=1, progress),
 
                 "group" = BGL(xx, y, CLC, s, L, max.steps, c(hatBeta), hatAlpha, hatInvTauSq, invSigAlpha0,
-                              lambdaSq, hatSigmaSq, a, b, alpha, gamma, progress),
+                              lambdaSq, hatSigmaSq, sh, r, alpha, gamma, progress),
 
                 "individual" = BLasso(xx, y, CLC, max.steps, c(hatBeta), hatAlpha, hatInvTauSq=rep(1,s*L), invSigAlpha0,
-                                      lambdaSq, hatSigmaSq, a, b, alpha, gamma, progress)
+                                      lambdaSq, hatSigmaSq, sh, r, alpha, gamma, progress)
     )
   }
 

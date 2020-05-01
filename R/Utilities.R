@@ -1,4 +1,4 @@
 
 .onUnload <- function (libpath) {
-  library.dynam.unload("robin", libpath)
+  library.dynam.unload("Robin", libpath)
 }

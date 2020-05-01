@@ -15,38 +15,38 @@ GxESelection(obj, ...)
 \arguments{
 \item{obj}{robin object.}
 
-\item{...}{other GxESelection arguments}
+\item{...}{other GxESelection arguments.}
 
 \item{burn.in}{MCMC burn-in.}
 
-\item{prob}{probability for credible interval, between 0 and 1. e.g. prob=0.95 leads to 95\% credible interval}
+\item{prob}{probability for credible interval, between 0 and 1. e.g. prob=0.95 leads to 95\% credible interval.}
 }
 \value{
 an object of class "GxESelection" is returned, which is a list with components:
-\item{method}{method used for identifying important effects}
-\item{effects}{a list of names of selected effects}
-\item{summary}{a summary of selected effects}
-\item{indicator}{a matrix of indicator of selected effects}
+\item{method}{method used for identifying important effects.}
+\item{effects}{a list of names of selected effects.}
+\item{summary}{a summary of selected effects.}
+\item{indicator}{a matrix of indicators of selected effects.}
 }
 \description{
 Variable selection for a robin object
 }
 \details{
-For class 'Sparse', the median probability model (MPM) (Barbieri and Berger, 2004) is used to identify predictors that are significantly associated
-with the response variable. For class 'NonSparse', variable selection is based on 95\% credible interval.
+For class `Sparse', the median probability model (MPM) (Barbieri and Berger, 2004) is used to identify predictors that are significantly associated
+with the response variable. For class `NonSparse', variable selection is based on 95\% credible interval.
 Please check the references for more details about the variable selection.
 }
 \examples{
 data(GxE_small)
-iter = 5000
+iter=5000
 ## sparse
-fit=robin(X, Y, E, clin, iterations = iter)
-selected = GxESelection(fit)
+fit=robin(X, Y, E, clin, iterations=iter)
+selected=GxESelection(fit)
 selected
 
 ## non-sparse
-fit=robin(X, Y, E, clin, iterations = iter, sparse=FALSE)
-selected = GxESelection(fit)
+fit=robin(X, Y, E, clin, iterations=iter, sparse=FALSE)
+selected=GxESelection(fit)
 selected
 
 }

@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // BGLPointMass
 Rcpp::List BGLPointMass(arma::mat xx, arma::vec y, arma::mat W, unsigned int s, unsigned int q, int maxSteps, arma::vec hatAlpha, arma::vec hatBeta, arma::vec hatInvTauSqStar, arma::mat invSigAlpha0, double hatPiStar, double hatLambdaSqStar, double hatSigmaSq, double aStar, double bStar, double alpha, double gamma, double sh1, double sh0, int progress);
-RcppExport SEXP _robin_BGLPointMass(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP sSEXP, SEXP qSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatInvTauSqStarSEXP, SEXP invSigAlpha0SEXP, SEXP hatPiStarSEXP, SEXP hatLambdaSqStarSEXP, SEXP hatSigmaSqSEXP, SEXP aStarSEXP, SEXP bStarSEXP, SEXP alphaSEXP, SEXP gammaSEXP, SEXP sh1SEXP, SEXP sh0SEXP, SEXP progressSEXP) {
+RcppExport SEXP _Robin_BGLPointMass(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP sSEXP, SEXP qSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatInvTauSqStarSEXP, SEXP invSigAlpha0SEXP, SEXP hatPiStarSEXP, SEXP hatLambdaSqStarSEXP, SEXP hatSigmaSqSEXP, SEXP aStarSEXP, SEXP bStarSEXP, SEXP alphaSEXP, SEXP gammaSEXP, SEXP sh1SEXP, SEXP sh0SEXP, SEXP progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -38,7 +38,7 @@ END_RCPP
 }
 // BGL
 Rcpp::List BGL(arma::mat xx, arma::vec y, arma::mat W, unsigned int s, unsigned int q, int maxSteps, arma::vec hatBeta, arma::vec hatAlpha, arma::vec hatInvTauSq, arma::mat invSigAlpha0, double hatLambdaSqStar, double hatSigmaSq, double aStar, double bStar, double alpha, double gamma, int progress);
-RcppExport SEXP _robin_BGL(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP sSEXP, SEXP qSEXP, SEXP maxStepsSEXP, SEXP hatBetaSEXP, SEXP hatAlphaSEXP, SEXP hatInvTauSqSEXP, SEXP invSigAlpha0SEXP, SEXP hatLambdaSqStarSEXP, SEXP hatSigmaSqSEXP, SEXP aStarSEXP, SEXP bStarSEXP, SEXP alphaSEXP, SEXP gammaSEXP, SEXP progressSEXP) {
+RcppExport SEXP _Robin_BGL(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP sSEXP, SEXP qSEXP, SEXP maxStepsSEXP, SEXP hatBetaSEXP, SEXP hatAlphaSEXP, SEXP hatInvTauSqSEXP, SEXP invSigAlpha0SEXP, SEXP hatLambdaSqStarSEXP, SEXP hatSigmaSqSEXP, SEXP aStarSEXP, SEXP bStarSEXP, SEXP alphaSEXP, SEXP gammaSEXP, SEXP progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -65,7 +65,7 @@ END_RCPP
 }
 // BL_SS
 Rcpp::List BL_SS(arma::mat xx, arma::vec y, arma::mat W, int maxSteps, arma::vec hatAlpha, arma::vec hatBeta, arma::vec hatInvTauSq, arma::mat invSigAlpha0, double hatPi, double hatLambdaSq, double hatSigmaSq, double aStar, double bStar, double alpha, double gamma, double sh1, double sh0, int progress);
-RcppExport SEXP _robin_BL_SS(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatInvTauSqSEXP, SEXP invSigAlpha0SEXP, SEXP hatPiSEXP, SEXP hatLambdaSqSEXP, SEXP hatSigmaSqSEXP, SEXP aStarSEXP, SEXP bStarSEXP, SEXP alphaSEXP, SEXP gammaSEXP, SEXP sh1SEXP, SEXP sh0SEXP, SEXP progressSEXP) {
+RcppExport SEXP _Robin_BL_SS(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatInvTauSqSEXP, SEXP invSigAlpha0SEXP, SEXP hatPiSEXP, SEXP hatLambdaSqSEXP, SEXP hatSigmaSqSEXP, SEXP aStarSEXP, SEXP bStarSEXP, SEXP alphaSEXP, SEXP gammaSEXP, SEXP sh1SEXP, SEXP sh0SEXP, SEXP progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -93,7 +93,7 @@ END_RCPP
 }
 // BLasso
 Rcpp::List BLasso(arma::mat xx, arma::vec y, arma::mat W, int maxSteps, arma::vec hatBeta, arma::vec hatAlpha, arma::vec hatInvTauSq, arma::mat invSigAlpha0, double hatLambdaSqStar, double hatSigmaSq, double aStar, double bStar, double alpha, double gamma, int progress);
-RcppExport SEXP _robin_BLasso(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP maxStepsSEXP, SEXP hatBetaSEXP, SEXP hatAlphaSEXP, SEXP hatInvTauSqSEXP, SEXP invSigAlpha0SEXP, SEXP hatLambdaSqStarSEXP, SEXP hatSigmaSqSEXP, SEXP aStarSEXP, SEXP bStarSEXP, SEXP alphaSEXP, SEXP gammaSEXP, SEXP progressSEXP) {
+RcppExport SEXP _Robin_BLasso(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP maxStepsSEXP, SEXP hatBetaSEXP, SEXP hatAlphaSEXP, SEXP hatInvTauSqSEXP, SEXP invSigAlpha0SEXP, SEXP hatLambdaSqStarSEXP, SEXP hatSigmaSqSEXP, SEXP aStarSEXP, SEXP bStarSEXP, SEXP alphaSEXP, SEXP gammaSEXP, SEXP progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -118,7 +118,7 @@ END_RCPP
 }
 // BRGL_SS
 Rcpp::List BRGL_SS(arma::mat xx, arma::vec y, arma::mat W, unsigned int s, unsigned int L, int maxSteps, arma::vec hatAlpha, arma::mat hatBeta, double hatTau, arma::vec hatV, arma::vec hatSg, arma::mat invSigAlpha0, double hatPi, double hatEtaSq, double xi1, double xi2, double r, double a, double b, double sh1, double sh0, int progress);
-RcppExport SEXP _robin_BRGL_SS(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP sSEXP, SEXP LSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatTauSEXP, SEXP hatVSEXP, SEXP hatSgSEXP, SEXP invSigAlpha0SEXP, SEXP hatPiSEXP, SEXP hatEtaSqSEXP, SEXP xi1SEXP, SEXP xi2SEXP, SEXP rSEXP, SEXP aSEXP, SEXP bSEXP, SEXP sh1SEXP, SEXP sh0SEXP, SEXP progressSEXP) {
+RcppExport SEXP _Robin_BRGL_SS(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP sSEXP, SEXP LSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatTauSEXP, SEXP hatVSEXP, SEXP hatSgSEXP, SEXP invSigAlpha0SEXP, SEXP hatPiSEXP, SEXP hatEtaSqSEXP, SEXP xi1SEXP, SEXP xi2SEXP, SEXP rSEXP, SEXP aSEXP, SEXP bSEXP, SEXP sh1SEXP, SEXP sh0SEXP, SEXP progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -150,7 +150,7 @@ END_RCPP
 }
 // BRGL
 Rcpp::List BRGL(arma::mat xx, arma::vec y, arma::mat W, unsigned int s, unsigned int L, int maxSteps, arma::vec hatAlpha, arma::mat hatBeta, double hatTau, arma::vec hatV, arma::vec hatSg, arma::mat invSigAlpha0, double hatEtaSq, double xi1, double xi2, double r, double a, double b, int progress);
-RcppExport SEXP _robin_BRGL(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP sSEXP, SEXP LSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatTauSEXP, SEXP hatVSEXP, SEXP hatSgSEXP, SEXP invSigAlpha0SEXP, SEXP hatEtaSqSEXP, SEXP xi1SEXP, SEXP xi2SEXP, SEXP rSEXP, SEXP aSEXP, SEXP bSEXP, SEXP progressSEXP) {
+RcppExport SEXP _Robin_BRGL(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP sSEXP, SEXP LSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatTauSEXP, SEXP hatVSEXP, SEXP hatSgSEXP, SEXP invSigAlpha0SEXP, SEXP hatEtaSqSEXP, SEXP xi1SEXP, SEXP xi2SEXP, SEXP rSEXP, SEXP aSEXP, SEXP bSEXP, SEXP progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -179,7 +179,7 @@ END_RCPP
 }
 // BRL_SS
 Rcpp::List BRL_SS(arma::mat xx, arma::vec y, arma::mat W, int maxSteps, arma::vec hatAlpha, arma::vec hatBeta, double hatTau, arma::vec hatV, arma::vec hatSg, arma::mat invSigAlpha0, double hatPi, double hatEtaSq, double xi1, double xi2, double r1, double a, double b, double sh1, double sh0, int progress);
-RcppExport SEXP _robin_BRL_SS(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatTauSEXP, SEXP hatVSEXP, SEXP hatSgSEXP, SEXP invSigAlpha0SEXP, SEXP hatPiSEXP, SEXP hatEtaSqSEXP, SEXP xi1SEXP, SEXP xi2SEXP, SEXP r1SEXP, SEXP aSEXP, SEXP bSEXP, SEXP sh1SEXP, SEXP sh0SEXP, SEXP progressSEXP) {
+RcppExport SEXP _Robin_BRL_SS(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatTauSEXP, SEXP hatVSEXP, SEXP hatSgSEXP, SEXP invSigAlpha0SEXP, SEXP hatPiSEXP, SEXP hatEtaSqSEXP, SEXP xi1SEXP, SEXP xi2SEXP, SEXP r1SEXP, SEXP aSEXP, SEXP bSEXP, SEXP sh1SEXP, SEXP sh0SEXP, SEXP progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -209,7 +209,7 @@ END_RCPP
 }
 // BRL
 Rcpp::List BRL(arma::mat xx, arma::vec y, arma::mat W, int maxSteps, arma::vec hatAlpha, arma::vec hatBeta, double hatTau, arma::vec hatV, arma::vec hatSg, arma::mat invSigAlpha0, double hatEtaSq, double xi1, double xi2, double r1, double a, double b, int progress);
-RcppExport SEXP _robin_BRL(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatTauSEXP, SEXP hatVSEXP, SEXP hatSgSEXP, SEXP invSigAlpha0SEXP, SEXP hatEtaSqSEXP, SEXP xi1SEXP, SEXP xi2SEXP, SEXP r1SEXP, SEXP aSEXP, SEXP bSEXP, SEXP progressSEXP) {
+RcppExport SEXP _Robin_BRL(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatTauSEXP, SEXP hatVSEXP, SEXP hatSgSEXP, SEXP invSigAlpha0SEXP, SEXP hatEtaSqSEXP, SEXP xi1SEXP, SEXP xi2SEXP, SEXP r1SEXP, SEXP aSEXP, SEXP bSEXP, SEXP progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -236,7 +236,7 @@ END_RCPP
 }
 // BRSGL_SS
 Rcpp::List BRSGL_SS(arma::mat xx, arma::vec y, arma::mat W, unsigned int s, unsigned int L, int maxSteps, arma::vec hatAlpha, arma::mat hatBg, double hatTau, arma::vec hatV, arma::mat hatGamma, arma::mat invSigAlpha0, double hatSsq, double hatPi0, double hatPi1, double xi1, double xi2, double hatT, double a, double b, double sh0_1, double sh0_0, double sh1_1, double sh1_0, double cutoff, int progress);
-RcppExport SEXP _robin_BRSGL_SS(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP sSEXP, SEXP LSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBgSEXP, SEXP hatTauSEXP, SEXP hatVSEXP, SEXP hatGammaSEXP, SEXP invSigAlpha0SEXP, SEXP hatSsqSEXP, SEXP hatPi0SEXP, SEXP hatPi1SEXP, SEXP xi1SEXP, SEXP xi2SEXP, SEXP hatTSEXP, SEXP aSEXP, SEXP bSEXP, SEXP sh0_1SEXP, SEXP sh0_0SEXP, SEXP sh1_1SEXP, SEXP sh1_0SEXP, SEXP cutoffSEXP, SEXP progressSEXP) {
+RcppExport SEXP _Robin_BRSGL_SS(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP sSEXP, SEXP LSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBgSEXP, SEXP hatTauSEXP, SEXP hatVSEXP, SEXP hatGammaSEXP, SEXP invSigAlpha0SEXP, SEXP hatSsqSEXP, SEXP hatPi0SEXP, SEXP hatPi1SEXP, SEXP xi1SEXP, SEXP xi2SEXP, SEXP hatTSEXP, SEXP aSEXP, SEXP bSEXP, SEXP sh0_1SEXP, SEXP sh0_0SEXP, SEXP sh1_1SEXP, SEXP sh1_0SEXP, SEXP cutoffSEXP, SEXP progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -272,7 +272,7 @@ END_RCPP
 }
 // BRSGL
 Rcpp::List BRSGL(arma::mat xx, arma::vec y, arma::mat W, unsigned int s, unsigned int L, int maxSteps, arma::vec hatAlpha, arma::mat hatBeta, double hatTau, arma::vec hatV, arma::vec hatSg, arma::mat hatGamma, arma::mat invSigAlpha0, double hatEta1Sq, double hatEta2Sq, double xi1, double xi2, double s1, double s2, double r1, double r2, double a, double b, int progress);
-RcppExport SEXP _robin_BRSGL(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP sSEXP, SEXP LSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatTauSEXP, SEXP hatVSEXP, SEXP hatSgSEXP, SEXP hatGammaSEXP, SEXP invSigAlpha0SEXP, SEXP hatEta1SqSEXP, SEXP hatEta2SqSEXP, SEXP xi1SEXP, SEXP xi2SEXP, SEXP s1SEXP, SEXP s2SEXP, SEXP r1SEXP, SEXP r2SEXP, SEXP aSEXP, SEXP bSEXP, SEXP progressSEXP) {
+RcppExport SEXP _Robin_BRSGL(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP sSEXP, SEXP LSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatTauSEXP, SEXP hatVSEXP, SEXP hatSgSEXP, SEXP hatGammaSEXP, SEXP invSigAlpha0SEXP, SEXP hatEta1SqSEXP, SEXP hatEta2SqSEXP, SEXP xi1SEXP, SEXP xi2SEXP, SEXP s1SEXP, SEXP s2SEXP, SEXP r1SEXP, SEXP r2SEXP, SEXP aSEXP, SEXP bSEXP, SEXP progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -306,7 +306,7 @@ END_RCPP
 }
 // BSGL_SS
 Rcpp::List BSGL_SS(arma::mat xx, arma::vec y, arma::mat W, unsigned int s, unsigned int L, int maxSteps, arma::vec hatAlpha, arma::mat hatBg, double hatSigmaSq, arma::mat hatGamma, arma::mat invSigAlpha0, double hatSsq, double hatPi0, double hatPi1, double hatT, double sh0_1, double sh0_0, double sh1_1, double sh1_0, double c, double d, double cutoff, int progress);
-RcppExport SEXP _robin_BSGL_SS(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP sSEXP, SEXP LSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBgSEXP, SEXP hatSigmaSqSEXP, SEXP hatGammaSEXP, SEXP invSigAlpha0SEXP, SEXP hatSsqSEXP, SEXP hatPi0SEXP, SEXP hatPi1SEXP, SEXP hatTSEXP, SEXP sh0_1SEXP, SEXP sh0_0SEXP, SEXP sh1_1SEXP, SEXP sh1_0SEXP, SEXP cSEXP, SEXP dSEXP, SEXP cutoffSEXP, SEXP progressSEXP) {
+RcppExport SEXP _Robin_BSGL_SS(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP sSEXP, SEXP LSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBgSEXP, SEXP hatSigmaSqSEXP, SEXP hatGammaSEXP, SEXP invSigAlpha0SEXP, SEXP hatSsqSEXP, SEXP hatPi0SEXP, SEXP hatPi1SEXP, SEXP hatTSEXP, SEXP sh0_1SEXP, SEXP sh0_0SEXP, SEXP sh1_1SEXP, SEXP sh1_0SEXP, SEXP cSEXP, SEXP dSEXP, SEXP cutoffSEXP, SEXP progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -339,7 +339,7 @@ END_RCPP
 }
 // BSGL
 Rcpp::List BSGL(arma::mat xx, arma::vec y, arma::mat W, unsigned int s, unsigned int L, int maxSteps, arma::vec hatAlpha, arma::mat hatBeta, arma::vec hatInvTauSq, arma::mat hatInvGammaSq, arma::mat invSigAlpha0, double hatLambdaSqT, double hatLambdaSqG, double hatSigmaSq, double s1, double s2, double r1, double r2, double a, double b, int progress);
-RcppExport SEXP _robin_BSGL(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP sSEXP, SEXP LSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatInvTauSqSEXP, SEXP hatInvGammaSqSEXP, SEXP invSigAlpha0SEXP, SEXP hatLambdaSqTSEXP, SEXP hatLambdaSqGSEXP, SEXP hatSigmaSqSEXP, SEXP s1SEXP, SEXP s2SEXP, SEXP r1SEXP, SEXP r2SEXP, SEXP aSEXP, SEXP bSEXP, SEXP progressSEXP) {
+RcppExport SEXP _Robin_BSGL(SEXP xxSEXP, SEXP ySEXP, SEXP WSEXP, SEXP sSEXP, SEXP LSEXP, SEXP maxStepsSEXP, SEXP hatAlphaSEXP, SEXP hatBetaSEXP, SEXP hatInvTauSqSEXP, SEXP hatInvGammaSqSEXP, SEXP invSigAlpha0SEXP, SEXP hatLambdaSqTSEXP, SEXP hatLambdaSqGSEXP, SEXP hatSigmaSqSEXP, SEXP s1SEXP, SEXP s2SEXP, SEXP r1SEXP, SEXP r2SEXP, SEXP aSEXP, SEXP bSEXP, SEXP progressSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -370,22 +370,22 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_robin_BGLPointMass", (DL_FUNC) &_robin_BGLPointMass, 20},
-    {"_robin_BGL", (DL_FUNC) &_robin_BGL, 17},
-    {"_robin_BL_SS", (DL_FUNC) &_robin_BL_SS, 18},
-    {"_robin_BLasso", (DL_FUNC) &_robin_BLasso, 15},
-    {"_robin_BRGL_SS", (DL_FUNC) &_robin_BRGL_SS, 22},
-    {"_robin_BRGL", (DL_FUNC) &_robin_BRGL, 19},
-    {"_robin_BRL_SS", (DL_FUNC) &_robin_BRL_SS, 20},
-    {"_robin_BRL", (DL_FUNC) &_robin_BRL, 17},
-    {"_robin_BRSGL_SS", (DL_FUNC) &_robin_BRSGL_SS, 26},
-    {"_robin_BRSGL", (DL_FUNC) &_robin_BRSGL, 24},
-    {"_robin_BSGL_SS", (DL_FUNC) &_robin_BSGL_SS, 23},
-    {"_robin_BSGL", (DL_FUNC) &_robin_BSGL, 21},
+    {"_Robin_BGLPointMass", (DL_FUNC) &_Robin_BGLPointMass, 20},
+    {"_Robin_BGL", (DL_FUNC) &_Robin_BGL, 17},
+    {"_Robin_BL_SS", (DL_FUNC) &_Robin_BL_SS, 18},
+    {"_Robin_BLasso", (DL_FUNC) &_Robin_BLasso, 15},
+    {"_Robin_BRGL_SS", (DL_FUNC) &_Robin_BRGL_SS, 22},
+    {"_Robin_BRGL", (DL_FUNC) &_Robin_BRGL, 19},
+    {"_Robin_BRL_SS", (DL_FUNC) &_Robin_BRL_SS, 20},
+    {"_Robin_BRL", (DL_FUNC) &_Robin_BRL, 17},
+    {"_Robin_BRSGL_SS", (DL_FUNC) &_Robin_BRSGL_SS, 26},
+    {"_Robin_BRSGL", (DL_FUNC) &_Robin_BRSGL, 24},
+    {"_Robin_BSGL_SS", (DL_FUNC) &_Robin_BSGL_SS, 23},
+    {"_Robin_BSGL", (DL_FUNC) &_Robin_BSGL, 21},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_robin(DllInfo *dll) {
+RcppExport void R_init_Robin(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }
