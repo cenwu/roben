@@ -1,6 +1,6 @@
-#' simulated data for demonstrating the features of Robin
+#' simulated data for demonstrating the features of roben
 #'
-#' Simulated gene expression data for demonstrating the features of Robin.
+#' Simulated gene expression data for demonstrating the features of roben.
 #'
 #' @docType data
 #' @keywords datasets
@@ -45,5 +45,5 @@
 #' dim(X)
 #' print(coeff)
 #'
-#' @seealso \code{\link{robin}}
+#' @seealso \code{\link{roben}}
 NULL

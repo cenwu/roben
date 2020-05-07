@@ -4,7 +4,7 @@
 \alias{GxESelection}
 \alias{GxESelection.Sparse}
 \alias{GxESelection.NonSparse}
-\title{Variable selection for a robin object}
+\title{Variable selection for a roben object}
 \usage{
 GxESelection(obj, ...)
 
@@ -13,7 +13,7 @@ GxESelection(obj, ...)
 \method{GxESelection}{NonSparse}(obj, burn.in = obj$burn.in, prob = 0.95, ...)
 }
 \arguments{
-\item{obj}{robin object.}
+\item{obj}{roben object.}
 
 \item{...}{other GxESelection arguments.}
 
@@ -22,14 +22,14 @@ GxESelection(obj, ...)
 \item{prob}{probability for credible interval, between 0 and 1. e.g. prob=0.95 leads to 95\% credible interval.}
 }
 \value{
-an object of class "GxESelection" is returned, which is a list with components:
+an object of class `GxESelection' is returned, which is a list with components:
 \item{method}{method used for identifying important effects.}
 \item{effects}{a list of names of selected effects.}
 \item{summary}{a summary of selected effects.}
 \item{indicator}{a matrix of indicators of selected effects.}
 }
 \description{
-Variable selection for a robin object
+Variable selection for a roben object
 }
 \details{
 For class `Sparse', the median probability model (MPM) (Barbieri and Berger, 2004) is used to identify predictors that are significantly associated
@@ -40,14 +40,16 @@ Please check the references for more details about the variable selection.
 data(GxE_small)
 iter=5000
 ## sparse
-fit=robin(X, Y, E, clin, iterations=iter)
+fit=roben(X, Y, E, clin, iterations=iter)
 selected=GxESelection(fit)
 selected
 
+\donttest{
 ## non-sparse
-fit=robin(X, Y, E, clin, iterations=iter, sparse=FALSE)
+fit=roben(X, Y, E, clin, iterations=iter, sparse=FALSE)
 selected=GxESelection(fit)
 selected
+}
 
 }
 \references{
@@ -56,5 +58,5 @@ Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2020). Robust Bayesian 
 Barbieri, M.M. and Berger, J.O. (2004). Optimal predictive model selection. {\emph{Ann. Statist}, 32(3):870–897}
 }
 \seealso{
-\code{\link{robin}}
+\code{\link{roben}}
 }
