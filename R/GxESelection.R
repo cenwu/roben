@@ -1,8 +1,8 @@
-#' Variable selection for a robin object
+#' Variable selection for a roben object
 #'
-#' Variable selection for a robin object
+#' Variable selection for a roben object
 #'
-#' @param obj robin object.
+#' @param obj roben object.
 #' @param ... other GxESelection arguments.
 #'
 #' @details For class `Sparse', the median probability model (MPM) (Barbieri and Berger, 2004) is used to identify predictors that are significantly associated
@@ -15,30 +15,32 @@
 #' Barbieri, M.M. and Berger, J.O. (2004). Optimal predictive model selection. {\emph{Ann. Statist}, 32(3):870–897}
 #'
 #' @rdname GxESelection
-#' @return an object of class "GxESelection" is returned, which is a list with components:
+#' @return an object of class `GxESelection' is returned, which is a list with components:
 #' \item{method}{method used for identifying important effects.}
 #' \item{effects}{a list of names of selected effects.}
 #' \item{summary}{a summary of selected effects.}
 #' \item{indicator}{a matrix of indicators of selected effects.}
 #'
-#' @seealso \code{\link{robin}}
+#' @seealso \code{\link{roben}}
 #'
 #' @examples
 #' data(GxE_small)
 #' iter=5000
 #' ## sparse
-#' fit=robin(X, Y, E, clin, iterations=iter)
+#' fit=roben(X, Y, E, clin, iterations=iter)
 #' selected=GxESelection(fit)
 #' selected
 #'
+#' \donttest{
 #' ## non-sparse
-#' fit=robin(X, Y, E, clin, iterations=iter, sparse=FALSE)
+#' fit=roben(X, Y, E, clin, iterations=iter, sparse=FALSE)
 #' selected=GxESelection(fit)
 #' selected
+#' }
 #'
 #' @export
 GxESelection <- function(obj,...){
-  if(!inherits(obj, "robin")) stop("This is not a robin object")
+  if(!inherits(obj, "roben")) stop("This is not a roben object")
   UseMethod('GxESelection', obj)
 }
 

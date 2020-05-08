@@ -1,10 +1,10 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Robin
+# roben
 
-> **Ro**bust **B**ayesian Variable Selection for Gene-environment
-> **In**teractions
+> **Ro**bust **B**ayesian Variable Selection for Gene-**en**vironment
+> Interactions
 
 <!-- badges: start -->
 
@@ -42,17 +42,17 @@ implemented in C++.
 <!-- end list -->
 
     install.packages("devtools")
-    devtools::install_github("jrhub/robin")
+    devtools::install_github("jrhub/roben")
 
 ## Examples
 
 #### Example.1 (default method: robust sparse group selection)
 
-    library(robin)
+    library(roben)
     data(GxE_small)
     
     iter = 5000
-    fit=robin(X, Y, E, clin, iterations = iter)
+    fit=roben(X, Y, E, clin, iterations = iter)
     fit$coefficient
     
     ## Ture values of parameters of mian G effects and interactions
@@ -67,7 +67,7 @@ implemented in C++.
 
 #### Example.2 (alternative: non-robust sparse group selection)
 
-    fit=robin(X, Y, E, clin, iterations = iter, robust=FALSE)
+    fit=roben(X, Y, E, clin, iterations = iter, robust=FALSE)
     
     sel = GxESelection(fit)
     pos = which(sel$indicator != 0)

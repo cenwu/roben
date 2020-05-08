@@ -15,7 +15,7 @@
 \alias{E2}
 \alias{clin2}
 \alias{coeff2}
-\title{simulated data for demonstrating the features of Robin}
+\title{simulated data for demonstrating the features of roben}
 \format{
 GxE_small consists of five components: X, Y, E, clin and coeff. coeff contains the true values of parameters used for generating Y.
 
@@ -26,7 +26,7 @@ data("GxE_small")
 data("GxE_large")
 }
 \description{
-Simulated gene expression data for demonstrating the features of Robin.
+Simulated gene expression data for demonstrating the features of roben.
 }
 \details{
 \strong{The data model for generating Y}
@@ -61,6 +61,6 @@ print(coeff)
 
 }
 \seealso{
-\code{\link{robin}}
+\code{\link{roben}}
 }
 \keyword{datasets}

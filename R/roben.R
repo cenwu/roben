@@ -5,7 +5,7 @@
 #' @keywords models
 #' @param X the matrix of predictors (genetic factors) without intercept. Each row should be an observation vector. X will be centered and a column of 1 will be added to the X matrix
 #' as the intercept.
-#' @param Y the response variable. The current version of Robin only supports continuous response.
+#' @param Y the response variable. The current version of roben only supports continuous response.
 #' @param E a matrix of environmental factors. E will be centered. The interaction terms between X (G factors) and E will be automatically created and included in the model.
 #' @param clin a matrix of clinical variables. Clinical variables are not subject to penalty.
 #' @param iterations the number of MCMC iterations.
@@ -55,7 +55,7 @@
 #'
 #' ## default method
 #' iter=5000
-#' fit=robin(X, Y, E, clin, iterations = iter)
+#' fit=roben(X, Y, E, clin, iterations = iter)
 #' fit$coefficient
 #'
 #' ## Ture values of parameters of mian G effects and interactions
@@ -70,17 +70,17 @@
 #'
 #' \donttest{
 #' ## alternative: robust group selection
-#' fit=robin(X, Y, E, clin, iterations=iter, structure="g")
+#' fit=roben(X, Y, E, clin, iterations=iter, structure="g")
 #' fit$coefficient
 #'
 #' ## alternative: non-robust sparse group selection
-#' fit=robin(X, Y, E, clin, iterations=iter, robust=FALSE)
+#' fit=roben(X, Y, E, clin, iterations=iter, robust=FALSE)
 #' fit$coefficient
 #' }
 #'
 #' @export
 
-robin <- function(X, Y, E, clin=NULL, iterations=10000, burn.in=NULL, robust=TRUE, sparse=TRUE, structure=c("sparsegroup","group","individual"), hyper=NULL, debugging=FALSE)
+roben <- function(X, Y, E, clin=NULL, iterations=10000, burn.in=NULL, robust=TRUE, sparse=TRUE, structure=c("sparsegroup","group","individual"), hyper=NULL, debugging=FALSE)
 {
 
   structure = match.arg(structure)
@@ -116,10 +116,18 @@ robin <- function(X, Y, E, clin=NULL, iterations=10000, burn.in=NULL, robust=TRU
  if(debugging) message("No. of G: ", s, "\tNo. of E: ", env, "\tNo. of G+GxE: ", ncol(xx), "\n")
 
   clcxx = cbind(CLC, xx)
-  lasso.cv = glmnet::cv.glmnet(clcxx,y,alpha=1,nfolds=5)
-  lambda.cv = lasso.cv$lambda.min;
   lasso.fit = glmnet::glmnet(clcxx, y, family="gaussian",alpha=1,nlambda=50)
-  coeff.array = as.vector(stats::predict(lasso.fit, s=lambda.cv, type="coefficients"))[-2];
+  prop = colSums(as.matrix(lasso.fit$beta) != 0)/ncol(clcxx)
+  ind = which.min(abs(prop-min(0.5, stats::median(prop), n/ncol(clcxx))))
+  coeff.array = lasso.fit$beta[,ind]
+  coeff.array[1] = lasso.fit$a0[ind]
+
+  # coeff.array = lasso.fit$beta[,floor(length(lasso.fit$lambda)/2)]
+  # coeff.array[1] = lasso.fit$a0[floor(length(lasso.fit$lambda)/2)]
+  # lasso.cv = glmnet::cv.glmnet(clcxx,y,alpha=1,nfolds=5)
+  # lambda.cv = lasso.cv$lambda.min;
+  # lasso.fit = glmnet::glmnet(clcxx, y, family="gaussian",alpha=1,nlambda=50)
+  # coeff.array = as.vector(stats::predict(lasso.fit, s=lambda.cv, type="coefficients"))[-2]
 
   hatAlpha = coeff.array[c(1:nclc)]
   hatBeta = matrix(coeff.array[-c(1:nclc)], ncol = s)
@@ -147,6 +155,6 @@ robin <- function(X, Y, E, clin=NULL, iterations=10000, burn.in=NULL, robust=TRU
   fit = list(call = this.call, posterior = out, coefficient=coefficient, burn.in = BI, iterations=iterations, design=list(xx=xx, CLC=CLC))
 
   # if(debugging && sparse) fit$debugList = out$debugList;
-  class(fit)=c("robin", class(out))
+  class(fit)=c("roben", class(out))
   fit
 }

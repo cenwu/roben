@@ -1,8 +1,8 @@
-#' make predictions from a robin object
+#' make predictions from a roben object
 #'
-#' make predictions from a robin object
+#' make predictions from a roben object
 #'
-#' @param object robin object.
+#' @param object roben object.
 #' @param X.new a matrix of new values for X at which predictions are to be made.
 #' @param E.new a vector of new values for E at which predictions are to be made.
 #' @param clin.new a vector or matrix of new values for clin at which predictions are to be made.
@@ -10,28 +10,28 @@
 #' @param ... other predict arguments
 #'
 #' @details X.new (E.new) must have the same number of columns as X (E) used for fitting the model. If clin was provided when fit the model, clin.new
-#' must not be NULL, and vice versa. The predictions are made based on the posterior estimates of coefficients in the robin object.
+#' must not be NULL, and vice versa. The predictions are made based on the posterior estimates of coefficients in the roben object.
 #' Note that the main effects of environmental exposures E are not subject to selection.
 #'
 #' If Y.new is provided, the prediction error will be computed. For robust methods, the prediction mean absolute deviations (PMAD) will be computed.
 #' For non-robust methods, the prediction mean squared error (PMSE) will be computed.
 #'
-#' @return  an object of class "robin.pred" is returned, which is a list with components:
+#' @return  an object of class `roben.pred' is returned, which is a list with components:
 #' \item{error}{prediction error. error is NULL is Y.new=NULL.}
 #' \item{y.pred}{predicted values of the new observations.}
 #'
-#' @rdname predict.robin
-#' @method predict robin
-#' @seealso \code{\link{robin}}
+#' @rdname predict.roben
+#' @method predict roben
+#' @seealso \code{\link{roben}}
 #'
 #' @examples
 #' data(GxE_small)
 #' test=sample((1:nrow(X)), floor(nrow(X)/5))
-#' fit=robin(X[-test,], Y[-test,], E[-test,], clin[-test,], iterations=5000)
+#' fit=roben(X[-test,], Y[-test,], E[-test,], clin[-test,], iterations=5000)
 #' predict(fit, X[test,], E[test,], clin[test,], Y[test,])
 #'
 #' @export
-predict.robin=function(object, X.new, E.new, clin.new=NULL, Y.new=NULL, ...){
+predict.roben=function(object, X.new, E.new, clin.new=NULL, Y.new=NULL, ...){
 
   intercept = TRUE
   dat = Data.matrix(X.new, Y.new, E.new, clin.new, intercept)
@@ -64,7 +64,7 @@ predict.robin=function(object, X.new, E.new, clin.new=NULL, Y.new=NULL, ...){
   }
 
   pred = list(error=error, y.pred=y.pred)
-  class(pred) = "robin.pred"
+  class(pred) = "roben.pred"
   pred
 }
 
