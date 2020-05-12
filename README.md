@@ -13,9 +13,9 @@
 <!-- [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/spinBayes)](http://www.r-pkg.org/pkg/spinBayes) -->
 
 [![Travis build
-status](https://travis-ci.org/jrhub/robin.svg?branch=master)](https://travis-ci.org/jrhub/robin)
+status](https://travis-ci.org/jrhub/roben.svg?branch=master)](https://travis-ci.org/jrhub/roben)
 [![Codecov test
-coverage](https://codecov.io/gh/jrhub/robin/branch/master/graph/badge.svg)](https://codecov.io/gh/jrhub/robin?branch=master)
+coverage](https://codecov.io/gh/jrhub/roben/branch/master/graph/badge.svg)](https://codecov.io/gh/jrhub/roben?branch=master)
 <!-- badges: end -->
 
 Gene-environment (G×E) interactions have important implications to
@@ -43,6 +43,14 @@ implemented in C++.
 
     install.packages("devtools")
     devtools::install_github("jrhub/roben")
+
+  - Released versions of roben are available on CRAN
+    [(link)](https://cran.r-project.org/package=roben), and can be
+    installed within R via
+
+<!-- end list -->
+
+    install.packages("roben")
 
 ## Examples
 
