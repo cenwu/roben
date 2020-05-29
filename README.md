@@ -14,6 +14,8 @@
 
 [![Travis build
 status](https://travis-ci.org/jrhub/roben.svg?branch=master)](https://travis-ci.org/jrhub/roben)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/roben)](https://CRAN.R-project.org/package=roben)
 [![Codecov test
 coverage](https://codecov.io/gh/jrhub/roben/branch/master/graph/badge.svg)](https://codecov.io/gh/jrhub/roben?branch=master)
 <!-- badges: end -->
@@ -76,7 +78,6 @@ implemented in C++.
 #### Example.2 (alternative: non-robust sparse group selection)
 
     fit=roben(X, Y, E, clin, iterations = iter, robust=FALSE)
-    
     sel = GxESelection(fit)
     pos = which(sel$indicator != 0)
     tp = length(intersect(which(coeff$GE != 0), pos))
