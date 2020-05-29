@@ -79,7 +79,7 @@ GxESelection.Sparse=function(obj, burn.in=obj$burn.in,...){
 
   if(sum(Ind.GE[-1,])>0){
     inds = which(Ind.GE>0, arr.ind = TRUE)
-    inds = inds[inds[,1]!=1,]
+    inds = inds[inds[,1]!=1,,drop=FALSE]
     paste(G.names[inds[,2]], "x", E.names[inds[,1]], sep="")
     GxE = paste(G.names[inds[,2]], "x", E.names[inds[,1]], sep="")
   }else{
@@ -134,7 +134,7 @@ GxESelection.NonSparse=function(obj, burn.in=obj$burn.in, prob=0.95,...){
 
   if(sum(Ind.GE[-1,])>0){
     inds = which(Ind.GE>0, arr.ind = TRUE)
-    inds = inds[inds[,1]!=1,]
+    inds = inds[inds[,1]!=1,,drop=FALSE]
     paste(G.names[inds[,2]], "x", E.names[inds[,1]], sep="")
     GxE = paste(G.names[inds[,2]], "x", E.names[inds[,1]], sep="")
   }else{
