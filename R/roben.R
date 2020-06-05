@@ -58,7 +58,7 @@
 #' fit=roben(X, Y, E, clin, iterations = iter)
 #' fit$coefficient
 #'
-#' ## Ture values of parameters of mian G effects and interactions
+#' ## Ture values of parameters of main G effects and interactions
 #' coeff$GE
 #'
 #' ## Compute TP and FP

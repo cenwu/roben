@@ -1,7 +1,7 @@
 Package: roben
 Type: Package
 Title: Robust Bayesian Variable Selection for Gene-Environment Interactions
-Version: 0.1.0
+Version: 0.1.1
 Author: Jie Ren, Fei Zhou, Xiaoxi Li, Cen Wu
 Maintainer: Jie Ren <jieren@ksu.edu>
 Description: Gene-environment (G×E) interactions have important implications to elucidate the 
