@@ -2,8 +2,9 @@
 #' @importFrom Rcpp sourceCpp
 NULL
 
-#' @docType package
 #' @keywords overview
+"_PACKAGE"
+
 #' @name roben-package
 #' @title Robust Bayesian Variable Selection for Gene-Environment Interactions
 #' @aliases roben-package

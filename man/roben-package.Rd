@@ -3,8 +3,10 @@
 \docType{package}
 \name{roben-package}
 \alias{roben-package}
-\title{Robust Bayesian Variable Selection for Gene-Environment Interactions}
+\title{roben: Robust Bayesian Variable Selection for Gene-Environment Interactions}
 \description{
+Gene-environment (G×E) interactions have important implications to elucidate the etiology of complex diseases beyond the main genetic and environmental effects. Outliers and data contamination in disease phenotypes of G×E studies have been commonly encountered, leading to the development of a broad spectrum of robust penalization methods. Nevertheless, within the Bayesian framework, the issue has not been taken care of in existing studies. We develop a robust Bayesian variable selection method for G×E interaction studies. The proposed Bayesian method can effectively accommodate heavy-tailed errors and outliers in the response variable while conducting variable selection by accounting for structural sparsity. In particular, the spike-and-slab priors have been imposed on both individual and group levels to identify important main and interaction effects. An efficient Gibbs sampler has been developed to facilitate fast computation. The Markov chain Monte Carlo algorithms of the proposed and alternative methods are efficiently implemented in C++.
+
 In this package, we provide a set of robust Bayesian variable selection methods tailored for interaction analysis. A Bayesian formulation of the least absolute deviation (LAD) regression has been adopted to accommodate data contamination and long-tailed distributions in the response/ phenotype. The default method (the proposed method) conducts variable selection by accounting for structural sparsity. In particular, the spike--and--slab priors are imposed on both individual and group levels to identify important main and interaction effects (bi-level/ sparse-group selection).
 
 In addition to the default method, users can also choose different selection structures (group-level-only or individual-level-only), methods without spike--and--slab priors and non-robust methods. In total, \emph{roben} provides 12 different methods (6 robust and 6 non-robust). Among them, robust methods with spike--and--slab priors and the robust method for bi-level selection have been developed for the first time. Please read the Details below for how to configure the method used.
@@ -53,6 +55,13 @@ Wu, C., Zhong, P.S. and Cui, Y. (2013). High dimensional variable selection for 
 {\emph{Technical Report. Michigan State University.}}
 }
 \seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/jrhub/roben}
+  \item Report bugs at \url{https://github.com/jrhub/roben/issues}
+}
+
+
 \code{\link{roben}}
 }
 \keyword{overview}
