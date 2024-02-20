@@ -16,7 +16,7 @@ Description: Gene-environment (G×E) interactions have important implications to
     individual and group levels to identify important main and interaction effects. An efficient 
     Gibbs sampler has been developed to facilitate fast computation. The Markov chain Monte Carlo 
     algorithms of the proposed and alternative methods are efficiently implemented in C++.
-Depends: R (>= 3.5.0)
+Depends: R (>= 4.0.0)
 License: GPL-2
 Encoding: UTF-8
 LazyData: true

@@ -25,13 +25,14 @@ GxESelection() takes a roben object and returns the variable selection results.
 predict() takes a roben object and returns the predicted values for new observations.
 }
 \references{
-Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2020). Robust Bayesian variable selection for gene-environment interactions.
+Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2023) Robust Bayesian variable selection for
+gene-environment interactions. \emph{Biometrics}, 79(2):684-694. doi: \url{https://doi.org/10.1111/biom.13670}. PMID: 35394058.
 
-Wu, C., and Ma, S. (2015). A selective review of robust variable selection with applications in bioinformatics.
+Wu, C. and Ma, S. (2015). A selective review of robust variable selection with applications in bioinformatics.
 {\emph{Briefings in Bioinformatics}, 16(5), 873–883} \url{https://doi.org/10.1093/bib/bbu046}
 
-Zhou, F., Ren, J., Lu, X., Ma, S. and Wu, C. (2020). Gene–Environment Interaction: a Variable Selection Perspective. Epistasis. Methods in Molecular Biology.
-{\emph{Humana Press} (Accepted)} \url{https://arxiv.org/abs/2003.02930}
+Zhou, F., Ren, J., Lu, X., Ma, S. and Wu, C. (2021). Gene-Environment Interaction: A Variable Selection Perspective.
+\emph{Methods in Molecular Biology}, 2212:191-223. doi: \url{https://doi.org/10.1007/978-1-0716-0947-7_13}. PMID: 33733358.
 
 Ren, J., Zhou, F., Li, X., Chen, Q., Zhang, H., Ma, S., Jiang, Y. and Wu, C. (2020) Semi-parametric Bayesian variable selection for gene-environment interactions.
 {\emph{Statistics in Medicine}, 39: 617– 638} \url{https://doi.org/10.1002/sim.8434}

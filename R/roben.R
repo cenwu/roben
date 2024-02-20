@@ -20,19 +20,19 @@
 #' \deqn{Y_{i} = \alpha_{0} + \sum_{t=1}^{q}\alpha_{t}Clin_{it} + \sum_{m=1}^{k}\theta_{m}E_{im}  + \sum_{j=1}^{p} \big(U_{ij}^\top\beta_{j}\big) +\epsilon_{i},}
 #' where the main and interaction effects of the \eqn{j}th genetic variant is corresponding to the coefficient vector \eqn{\beta_{j}=(\beta_{j1}, \beta_{j2},\ldots,\beta_{jL})^\top}.
 #'
-#' When {structure="sparsegroup"} (default setting), selection will be conducted on both individual and group levels (bi-level selection):
+#' When structure="sparsegroup" (default setting), selection will be conducted on both individual and group levels (bi-level selection):
 #' \itemize{
 #' \item \strong{Group-level selection:} by determining whether \eqn{||\beta_{j}||_{2}=0}, we can know if the \eqn{j}th genetic variant has any effect at all.
 #' \item \strong{Individual-level selection:} investigate whether the \eqn{j}th genetic variant has main effect, G\eqn{\times}E interaction or both, by determining which components in \eqn{\beta_{j}} has non-zero values.
 #' }
-#' If {structure="group"}, only group-level selection will be conducted on \eqn{||\beta_{j}||_{2}}. If {structure="individual"}, only individual-level selection will be conducted on each \eqn{\beta_{jl}}, (\eqn{l=1,\ldots,L}).
+#' If structure="group", only group-level selection will be conducted on \eqn{||\beta_{j}||_{2}}. If structure="individual", only individual-level selection will be conducted on each \eqn{\beta_{jl}}, (\eqn{l=1,\ldots,L}).
 #'
-#' When {sparse=TRUE} (default), spike--and--slab priors are imposed on individual and/or group levels to identify important main and interaction effects. Otherwise, Laplacian shrinkage will be used.
+#' When sparse=TRUE (default), spike--and--slab priors are imposed on individual and/or group levels to identify important main and interaction effects. Otherwise, Laplacian shrinkage will be used.
 #'
-#' When {robust=TRUE} (default), the distribution of \eqn{\epsilon_{i}} is defined as a Laplace distribution with density
+#' When robust=TRUE (default), the distribution of \eqn{\epsilon_{i}} is defined as a Laplace distribution with density
 #' \eqn{
 #' f(\epsilon_{i}|\nu) = \frac{\nu}{2}\exp\left\{-\nu |\epsilon_{i}|\right\}
-#' }, (\eqn{i=1,\dots,n}), which leads to a Bayesian formulation of LAD regression. If {robust=FALSE}, \eqn{\epsilon_{i}} follows a normal distribution.
+#' }, (\eqn{i=1,\dots,n}), which leads to a Bayesian formulation of LAD regression. If robust=FALSE, \eqn{\epsilon_{i}} follows a normal distribution.
 #' \cr
 #'
 #' Both \eqn{X} and \eqn{E} will be centered before the generation of interaction terms, in order to prevent the multicollinearity between main effects and interaction terms.
@@ -41,10 +41,10 @@
 #' Users can modify the hyper-parameters by providing a named list of hyper-parameters via the argument `hyper'.
 #' The list can have the following named components
 #' \itemize{
-#'   \item{a0, b0: }{ shape parameters of the Beta priors (\eqn{\pi^{a_{0}-1}(1-\pi)^{b_{0}-1}}) on \eqn{\pi_{0}}.}
-#'   \item{a1, b1: }{ shape parameters of the Beta priors (\eqn{\pi^{a_{1}-1}(1-\pi)^{b_{1}-1}}) on \eqn{\pi_{1}}.}
-#'   \item{c1, c2: }{ the shape parameter and the rate parameter of the Gamma prior on \eqn{\nu}.}
-#'   \item{d1, d2: }{ the shape parameter and the rate parameter of the Gamma priors on \eqn{\eta}.}
+#'   \item a0, b0: shape parameters of the Beta priors (\eqn{\pi^{a_{0}-1}(1-\pi)^{b_{0}-1}}) on \eqn{\pi_{0}}.
+#'   \item a1, b1: shape parameters of the Beta priors (\eqn{\pi^{a_{1}-1}(1-\pi)^{b_{1}-1}}) on \eqn{\pi_{1}}.
+#'   \item c1, c2: the shape parameter and the rate parameter of the Gamma prior on \eqn{\nu}.
+#'   \item d1, d2: the shape parameter and the rate parameter of the Gamma priors on \eqn{\eta}.
 #' }
 #' Please check the references for more details about the prior distributions.
 #'

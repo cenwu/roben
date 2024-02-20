@@ -98,5 +98,8 @@ implemented in C++.
 
 This package provides implementation for methods proposed in
 
-- Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2020). Robust
-  Bayesian variable selection for gene-environment interactions.
+- Ren J, Zhou F, Li X, Ma S, Jiang Y, Wu C. Robust Bayesian variable
+  selection for gene-environment interactions. Biometrics. 2023
+  Jun;79(2):684-694. doi:
+  [10.1111/biom.13670](https://doi.org/10.1111/biom.13670). Epub 2022
+  Apr 16. PMID: 35394058.
