@@ -56,7 +56,7 @@ selected
 }
 \references{
 Ren, J., Zhou, F., Li, X., Ma, S., Jiang, Y. and Wu, C. (2023) Robust Bayesian variable selection for
-gene-environment interactions. \emph{Biometrics}, 79(2):684-694. doi: \url{https://doi.org/10.1111/biom.13670}. PMID: 35394058.
+gene-environment interactions. \emph{Biometrics}, 79(2):684-694. \doi{10.1111/biom.13670}. PMID: 35394058.
 
 Barbieri, M.M. and Berger, J.O. (2004). Optimal predictive model selection. {\emph{Ann. Statist}, 32(3):870–897}
 }
