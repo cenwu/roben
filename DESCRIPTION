@@ -24,7 +24,8 @@ LinkingTo: Rcpp, RcppArmadillo
 Imports: Rcpp, glmnet, stats
 RoxygenNote: 7.3.1
 Suggests: 
-    testthat (>= 2.1.0),
+    testthat (>= 3.0.0),
     covr
 URL: https://github.com/jrhub/roben
 BugReports: https://github.com/jrhub/roben/issues
+Config/testthat/edition: 3

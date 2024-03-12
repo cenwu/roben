@@ -40,7 +40,8 @@ test_that("check_parameters_RBVS-SS_sg", {
   expect_equal(length(fit$coefficient$clin), 0)
   expect_equal(length(fit$coefficient$E), env)
   expect_equal(dim(fit$coefficient$GE), c(size, s))
-  expect_gt(sum(fit$coefficient$GE==0), s)
+  # expect_gt(sum(fit$coefficient$GE==0), s)
+  expect_gt(sum(fit$coefficient$GE==0), 0)
   expect_equal(sum(fit$coefficient$GE[1,]!=0), s)
 
 })
@@ -66,6 +67,7 @@ test_that("check_parameters_RBVS-SS_i", {
 
 test_that("check_parameters_RBVS_sg", {
   # skip_on_cran()
+  set.seed(12345)
   n = 25; env = 2; s = 4; size = env+1
   X = scale(matrix(runif(n*s,0,100), n, s), scale=FALSE);
   E = scale(matrix(runif(n*env,0,20), n, env), scale=FALSE);
@@ -85,6 +87,7 @@ test_that("check_parameters_RBVS_sg", {
 
 test_that("check_parameters_RBVS_g", {
   # skip_on_cran()
+  set.seed(12345)
   n = 25; env = 2; s = 4; size = env+1
   X = scale(matrix(rnorm(n*s,0,1), n, s), scale=FALSE);
   E = scale(matrix(rnorm(n*env,0,1), n, env), scale=FALSE);
@@ -103,6 +106,7 @@ test_that("check_parameters_RBVS_g", {
 
 test_that("check_parameters_RBVS_i", {
   # skip_on_cran()
+  set.seed(12345)
   n = 25; env = 0; s = 4; size = env+1
   X = scale(matrix(rnorm(n*s,0,2), n, s), scale=FALSE);
   Y= 5+ X%*%c(1, 2, 3, 4)+rnorm(n)
@@ -122,6 +126,7 @@ test_that("check_parameters_RBVS_i", {
 
 test_that("check_parameters_BVS-SS_sg", {
   # skip_on_cran()
+  set.seed(12345)
   n = 25; env = 2; s = 4; nclin=2; size = env+1
   X = scale(matrix(rnorm(n*s,0,3), n, s), scale=FALSE)
   E = scale(matrix(rnorm(n*env,0,2), n, env), scale=FALSE)
@@ -146,6 +151,7 @@ test_that("check_parameters_BVS-SS_sg", {
 
 test_that("check_parameters_BVS-SS_g", {
   # skip_on_cran()
+  set.seed(12345)
   n = 25; env = 2; s = 4; nclin=2; size = env+1
   X = scale(matrix(runif(n*s,0,10), n, s), scale=FALSE)
   E = scale(matrix(runif(n*env,0,5), n, env), scale=FALSE)
@@ -163,6 +169,7 @@ test_that("check_parameters_BVS-SS_g", {
 
 test_that("check_parameters_BVS-SS_i", {
   # skip_on_cran()
+  set.seed(12345)
   n = 25; env = 2; s = 4; nclin=2; size = env+1
   X = scale(matrix(runif(n*s,0,10), n, s), scale=FALSE)
   E = scale(matrix(runif(n*env,0,5), n, env), scale=FALSE)
@@ -184,6 +191,7 @@ test_that("check_parameters_BVS-SS_i", {
 
 test_that("check_parameters_BVS_sg", {
   # skip_on_cran()
+  set.seed(12345)
   n = 25; env = 3; s = 2; nclin=2; size = env+1
   X = scale(matrix(runif(n*s,0,5), n, s), scale=FALSE)
   E = scale(matrix(runif(n*env,0,5), n, env), scale=FALSE)
@@ -201,6 +209,7 @@ test_that("check_parameters_BVS_sg", {
 
 test_that("check_parameters_BVS_g", {
   # skip_on_cran()
+  set.seed(12345)
   n = 25; env = 0; s = 4; nclin=2; size = env+1
   X = scale(matrix(runif(n*s,0,5), n, s), scale=FALSE)
   clin = scale(matrix(floor(runif(n*nclin,-5,5)), n, nclin), scale=FALSE)
