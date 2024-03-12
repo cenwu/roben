@@ -1,6 +1,7 @@
 
 test_that("check_parameters_RBVS-SS_g", {
   # skip_on_cran()
+  set.seed(12345)
   n = 25; env = 2; s = 3; size = env+1
   X = scale(matrix(rnorm(n*s,0,5), n, s), scale=FALSE)
   E = scale(matrix(rnorm(n*env,0,1), n, env), scale=FALSE)
@@ -23,6 +24,7 @@ test_that("check_parameters_RBVS-SS_g", {
 
 test_that("check_parameters_RBVS-SS_sg", {
   # skip_on_cran()
+  set.seed(12345)
   n = 25; env = 2; s = 3; size = env+1
   X = scale(matrix(rnorm(n*s,0,5), n, s), scale=FALSE)
   E = scale(matrix(rnorm(n*env,0,1), n, env), scale=FALSE)
@@ -45,6 +47,7 @@ test_that("check_parameters_RBVS-SS_sg", {
 
 test_that("check_parameters_RBVS-SS_i", {
   # skip_on_cran()
+  set.seed(12345)
   n = 25; env = 2; s = 3; size = env+1
   X = scale(matrix(rnorm(n*s,0,2), n, s), scale=FALSE);
   E = scale(matrix(rnorm(n*env,0,5), n, env), scale=FALSE)
