@@ -1,9 +1,21 @@
 Package: roben
 Type: Package
 Title: Robust Bayesian Variable Selection for Gene-Environment Interactions
-Version: 0.1.1
-Author: Jie Ren, Fei Zhou, Xiaoxi Li, Cen Wu
-Maintainer: Jie Ren <jieren@ksu.edu>
+Version: 0.1.2
+Authors@R: c(person(given = "Jie",
+				  family = "Ren",
+				  role = c("aut", "cre"),
+				  email = "renjie0910@gmail.com"),
+		   person(given = "Fei",
+				  family = "Zhou",
+				  role = "aut"),
+		   person(given = "Xiaoxi",
+				  family = "Li",
+				  role = "aut"),
+		   person(given = "Cen",
+				  family = "Wu",
+				  role = "aut"))
+Maintainer: Jie Ren <renjie0910@gmail.com>
 Description: Gene-environment (G×E) interactions have important implications to elucidate the 
     etiology of complex diseases beyond the main genetic and environmental effects. 
     Outliers and data contamination in disease phenotypes of G×E studies have been commonly 
@@ -22,7 +34,7 @@ Encoding: UTF-8
 LazyData: true
 LinkingTo: Rcpp, RcppArmadillo
 Imports: Rcpp, glmnet, stats
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Suggests: 
     testthat (>= 3.0.0),
     covr

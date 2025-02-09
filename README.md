@@ -41,7 +41,7 @@ implemented in C++.
 <!-- -->
 
     install.packages("devtools")
-    devtools::install_github("jrhub/roben")
+    devtools::install_github("jrhub/roben") #v0.1.2
 
 - Released versions of roben are available on CRAN
   [(link)](https://cran.r-project.org/package=roben), and can be
@@ -98,8 +98,8 @@ implemented in C++.
 
 This package provides implementation for methods proposed in
 
-- Ren J, Zhou F, Li X, Ma S, Jiang Y, Wu C. Robust Bayesian variable
-  selection for gene-environment interactions. Biometrics. 2023
-  Jun;79(2):684-694. doi:
-  [10.1111/biom.13670](https://doi.org/10.1111/biom.13670). Epub 2022
-  Apr 16. PMID: 35394058.
+- Ren J., Zhou F., Li X., Ma S., Jiang Y., Wu C. (2023) Robust Bayesian
+  variable selection for gene–environment interactions. Biometrics, 79,
+  684–694. doi:
+  [10.1111/biom.13670](https://doi.org/10.1111/biom.13670). PMID:
+  35394058 PMCID: PMC11086965.
